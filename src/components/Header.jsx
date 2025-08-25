@@ -1,10 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Header({ isDark, mode, cycleMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const btnRef = useRef(null);
+  const panelRef = useRef(null);
 
   const toggleMenu = () => setMenuOpen((v) => !v);
   const closeMenu = () => setMenuOpen(false);
+
+  // Close on outside click / Esc and lock body scroll when open
+  useEffect(() => {
+    if (menuOpen) {
+      const onKey = (e) => {
+        if (e.key === "Escape") closeMenu();
+      };
+      const onClick = (e) => {
+        const t = e.target;
+        if (
+          panelRef.current && !panelRef.current.contains(t) &&
+          btnRef.current && !btnRef.current.contains(t)
+        ) {
+          closeMenu();
+        }
+      };
+      document.addEventListener("keydown", onKey);
+      document.addEventListener("mousedown", onClick);
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.removeEventListener("keydown", onKey);
+        document.removeEventListener("mousedown", onClick);
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [menuOpen]);
   const ModeIcon = () => {
     if (mode === "auto")
       return (
@@ -88,6 +117,7 @@ export default function Header({ isDark, mode, cycleMode }) {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
+            ref={btnRef}
             className={
               "inline-flex items-center rounded-lg p-2 transition " +
               (isDark
@@ -115,6 +145,7 @@ export default function Header({ isDark, mode, cycleMode }) {
             id="mobile-menu"
             role="menu"
             aria-label="Mobile navigation"
+            ref={panelRef}
             className={
               "absolute right-4 top-full z-30 mt-2 w-64 overflow-hidden rounded-xl border shadow-lg md:hidden " +
               (isDark ? "border-white/15 bg-slate-900/95" : "border-black/10 bg-white/95")

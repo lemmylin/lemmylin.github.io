@@ -15,3 +15,10 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* Smooth anchored scrolling and header offset */
+html {
+  scroll-behavior: smooth;
+  /* Account for sticky header height for in-page anchors */
+  scroll-padding-top: 5.5rem;
+}

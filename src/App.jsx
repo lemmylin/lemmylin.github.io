@@ -64,6 +64,12 @@ export default function App() {
         (isDark ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900")
       }
     >
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:px-3 focus:py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500/60 "
+      >
+        Skip to content
+      </a>
       <div id="top" />
       {/* Decorative background */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -73,19 +79,21 @@ export default function App() {
 
       <Header isDark={isDark} mode={mode} cycleMode={cycleMode} />
 
-      <Hero profile={profile} isDark={isDark} />
+      <main id="main">
+        <Hero profile={profile} isDark={isDark} />
 
-      <About isDark={isDark} />
+        <About isDark={isDark} />
 
-      <Experience experience={experience} isDark={isDark} />
+        <Experience experience={experience} isDark={isDark} />
 
-      <Projects projects={projects} isDark={isDark} />
+        <Projects projects={projects} isDark={isDark} />
 
-      <Skills skills={skills} isDark={isDark} />
+        <Skills skills={skills} isDark={isDark} />
 
-      <Education education={education} isDark={isDark} />
+        <Education education={education} isDark={isDark} />
 
-      <Contact profile={profile} isDark={isDark} />
+        <Contact profile={profile} isDark={isDark} />
+      </main>
 
       <Footer profile={profile} isDark={isDark} />
 
