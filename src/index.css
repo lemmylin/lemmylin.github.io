@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Signature-style font for the logo text */
+.font-signature {
+  font-family:
+    "Allura",
+    "Great Vibes",
+    "Dancing Script",
+    "Satisfy",
+    "Pacifico",
+    "Segoe Script",
+    "Snell Roundhand",
+    "Brush Script MT",
+    cursive;
+  font-weight: 400;
+  font-style: normal;
+}
