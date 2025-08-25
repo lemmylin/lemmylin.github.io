@@ -3,6 +3,44 @@ import { motion } from "framer-motion";
 import Badge from "./Badge.jsx";
 
 export default function Hero({ profile, isDark }) {
+  const Icon = ({ label }) => {
+    const common = { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", "aria-hidden": true };
+    switch (label) {
+      case "Site":
+        return (
+          <svg {...common}>
+            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        );
+      case "LinkedIn":
+        return (
+          <svg {...common}>
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" />
+            <circle cx="8" cy="10" r="1.2" fill="currentColor" />
+            <path d="M7.5 16.5V12.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <path d="M12 16.5v-3a2 2 0 0 1 2-2c1.1 0 2 .9 2 2v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        );
+      case "Instagram":
+        return (
+          <svg {...common}>
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" strokeWidth="2" />
+            <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+          </svg>
+        );
+      case "Email":
+        return (
+          <svg {...common}>
+            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="2" />
+            <path d="M22 8l-10 6L2 8" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        );
+      default:
+        return null;
+    }
+  };
   return (
     <motion.section
       id="top"
@@ -25,13 +63,14 @@ export default function Hero({ profile, isDark }) {
               target={l.external ? "_blank" : undefined}
               rel={l.external ? "noreferrer" : undefined}
               className={
-                "inline-flex items-center rounded-full px-3 py-1 text-sm " +
+                "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm " +
                 (isDark
                   ? "border border-white/15 bg-white/5 hover:bg-white/10"
                   : "border border-black/10 bg-black/5 hover:bg-black/10")
               }
             >
-              {l.label}
+              <Icon label={l.label} />
+              <span>{l.label}</span>
             </a>
           ))}
         </div>
@@ -46,4 +85,3 @@ export default function Hero({ profile, isDark }) {
     </motion.section>
   );
 }
-
