@@ -48,6 +48,15 @@ export default function App() {
   const cycleMode = () =>
     setMode((m) => (m === "auto" ? "light" : m === "light" ? "dark" : "auto"));
 
+  // Back-to-top visibility
+  const [showTop, setShowTop] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 320);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div
       className={
@@ -55,6 +64,7 @@ export default function App() {
         (isDark ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900")
       }
     >
+      <div id="top" />
       {/* Decorative background */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-[-10%] h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl" />
@@ -78,6 +88,24 @@ export default function App() {
       <Contact profile={profile} isDark={isDark} />
 
       <Footer profile={profile} isDark={isDark} />
+
+      {/* Back to Top button */}
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+        className={
+          "fixed bottom-4 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full shadow-lg transition md:bottom-6 md:right-6 " +
+          (isDark
+            ? "border border-white/15 bg-white/10 text-white hover:bg-white/20"
+            : "border border-black/10 bg-white text-slate-900 hover:bg-black/5") +
+          (showTop ? " opacity-100 translate-y-0" : " pointer-events-none opacity-0 translate-y-2")
+        }
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
     </div>
   );
 }
