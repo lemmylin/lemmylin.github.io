@@ -87,8 +87,10 @@ export default function Header({ isDark, mode, cycleMode }) {
           <a className={isDark ? "hover:text-indigo-300" : "hover:text-indigo-600"} href="#education">Education</a>
           <a
             className={
-              "rounded-lg px-3 py-1 " +
-              (isDark ? "border border-white/15 hover:bg-white/5" : "border border-black/10 hover:bg-black/5")
+              "rounded-lg px-3 py-1 inline-flex items-center gap-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
+              (isDark
+                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
             }
             href="#contact"
           >
@@ -99,10 +101,10 @@ export default function Header({ isDark, mode, cycleMode }) {
             aria-label={`Theme: ${mode}`}
             title={`Theme: ${mode}`}
             className={
-              "inline-flex items-center gap-2 rounded-lg px-3 py-1 transition " +
+              "inline-flex items-center gap-2 rounded-lg px-3 py-1 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
               (isDark
-                ? "border border-white/15 bg-white/5 hover:bg-white/10"
-                : "border border-black/10 bg-black/5 hover:bg-black/10")
+                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
             }
           >
             <ModeIcon />
@@ -119,10 +121,10 @@ export default function Header({ isDark, mode, cycleMode }) {
             aria-controls="mobile-menu"
             ref={btnRef}
             className={
-              "inline-flex items-center rounded-lg p-2 transition " +
+              "inline-flex items-center rounded-lg p-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
               (isDark
-                ? "border border-white/15 bg-white/5 hover:bg-white/10"
-                : "border border-black/10 bg-black/5 hover:bg-black/10")
+                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
             }
           >
             {menuOpen ? (
@@ -160,8 +162,10 @@ export default function Header({ isDark, mode, cycleMode }) {
               <a
                 onClick={closeMenu}
                 className={
-                  "mt-1 rounded-lg px-3 py-2 text-center " +
-                  (isDark ? "border border-white/15 hover:bg-white/5" : "border border-black/10 hover:bg-black/5")
+                  "mt-1 rounded-lg px-3 py-2 text-center inline-flex items-center justify-center border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
+                  (isDark
+                    ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                    : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
                 }
                 href="#contact"
               >
@@ -175,10 +179,10 @@ export default function Header({ isDark, mode, cycleMode }) {
                 aria-label={`Theme: ${mode}`}
                 title={`Theme: ${mode}`}
                 className={
-                  "mt-2 inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 transition " +
+                  "mt-2 inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
                   (isDark
-                    ? "border border-white/15 bg-white/5 hover:bg-white/10"
-                    : "border border-black/10 bg-black/5 hover:bg-black/10")
+                    ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                    : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
                 }
               >
                 <ModeIcon />

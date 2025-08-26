@@ -102,10 +102,10 @@ export default function App() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
         className={
-          "fixed bottom-4 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full shadow-lg transition md:bottom-6 md:right-6 " +
+          "fixed bottom-4 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-lg backdrop-blur-md backdrop-saturate-150 transition md:bottom-6 md:right-6 " +
           (isDark
-            ? "border border-white/15 bg-white/10 text-white hover:bg-white/20"
-            : "border border-black/10 bg-white text-slate-900 hover:bg-black/5") +
+            ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+            : "border-black/10 bg-white/50 text-slate-900 hover:bg-white/70") +
           (showTop ? " opacity-100 translate-y-0" : " pointer-events-none opacity-0 translate-y-2")
         }
       >

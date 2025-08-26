@@ -17,8 +17,10 @@ export default function Contact({ profile, isDark }) {
           <a
             href={`mailto:${profile.email}`}
             className={
-              "rounded-xl px-5 py-2 font-medium text-white shadow " +
-              (isDark ? "bg-indigo-500/90 hover:bg-indigo-500" : "bg-indigo-600 hover:bg-indigo-700")
+              "rounded-xl px-5 py-2 font-medium inline-flex items-center gap-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
+              (isDark
+                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                : "border-black/10 bg-white/50 text-slate-900 hover:bg-white/70")
             }
           >
             Email me
@@ -26,10 +28,10 @@ export default function Contact({ profile, isDark }) {
           <a
             href={`${import.meta.env.BASE_URL}Resume.pdf`}
             className={
-              "rounded-xl px-5 py-2 font-medium " +
+              "rounded-xl px-5 py-2 font-medium inline-flex items-center gap-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
               (isDark
-                ? "border border-white/15 text-white/90 hover:bg-white/5"
-                : "border border-black/10 text-slate-800 hover:bg-black/5")
+                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                : "border-black/10 bg-white/50 text-slate-900 hover:bg-white/70")
             }
           >
             Download résumé (PDF)

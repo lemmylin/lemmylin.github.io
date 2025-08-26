@@ -54,26 +54,26 @@ export default function Hero({ profile, isDark }) {
         <p className={"mt-2 text-lg " + (isDark ? "text-indigo-300" : "text-indigo-700")}>{profile.title}</p>
         <p className={"mt-4 max-w-xl " + (isDark ? "text-white/80" : "text-slate-700")}>{profile.summary}</p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Badge dark={isDark}>{profile.location}</Badge>
-          {profile.links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              target={l.external ? "_blank" : undefined}
-              rel={l.external ? "noreferrer" : undefined}
-              className={
-                "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm " +
-                (isDark
-                  ? "border border-white/15 bg-white/5 hover:bg-white/10"
-                  : "border border-black/10 bg-black/5 hover:bg-black/10")
-              }
-            >
-              <Icon label={l.label} />
-              <span>{l.label}</span>
-            </a>
-          ))}
-        </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Badge dark={isDark}>{profile.location}</Badge>
+            {profile.links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noreferrer" : undefined}
+                className={
+                  "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
+                  (isDark
+                    ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                    : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
+                }
+              >
+                <Icon label={l.label} />
+                <span>{l.label}</span>
+              </a>
+            ))}
+          </div>
       </div>
 
       <div className="order-1 lg:order-2">
