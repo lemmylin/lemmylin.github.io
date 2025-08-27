@@ -63,8 +63,10 @@ export default function Header({ isDark, mode, cycleMode }) {
   return (
     <header
       className={
-        "sticky top-0 z-20 border-b backdrop-blur " +
-        (isDark ? "border-white/10 bg-slate-950/70" : "border-black/10 bg-white/70")
+        "sticky top-0 z-20 border-b backdrop-blur after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-px after:h-px after:bg-gradient-to-r after:from-transparent " +
+        (isDark
+          ? "border-white/10 bg-slate-950/70 after:via-white/20 after:to-transparent"
+          : "border-black/10 bg-white/70 after:via-black/10 after:to-transparent")
       }
     >
       <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
@@ -79,12 +81,12 @@ export default function Header({ isDark, mode, cycleMode }) {
           </span>
         </a>
         {/* Desktop nav */}
-        <div className="hidden items-center gap-3 text-sm md:flex">
-          <a className={isDark ? "hover:text-indigo-300" : "hover:text-indigo-600"} href="#about">About</a>
-          <a className={isDark ? "hover:text-indigo-300" : "hover:text-indigo-600"} href="#experience">Experience</a>
-          <a className={isDark ? "hover:text-indigo-300" : "hover:text-indigo-600"} href="#projects">Projects</a>
-          <a className={isDark ? "hover:text-indigo-300" : "hover:text-indigo-600"} href="#skills">Skills</a>
-          <a className={isDark ? "hover:text-indigo-300" : "hover:text-indigo-600"} href="#education">Education</a>
+        <div className="hidden items-center gap-2 text-sm md:flex">
+          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#about">About</a>
+          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#experience">Experience</a>
+          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#projects">Projects</a>
+          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#skills">Skills</a>
+          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#education">Education</a>
           <a
             className={
               "rounded-lg px-3 py-1 inline-flex items-center gap-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +

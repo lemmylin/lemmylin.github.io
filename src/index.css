@@ -22,3 +22,27 @@ html {
   /* Account for sticky header height for in-page anchors */
   scroll-padding-top: 5.5rem;
 }
+
+/* Global theming tokens and subtle defaults */
+:root {
+  --brand-from: 234 89% 74%; /* indigo */
+  --brand-to: 270 89% 70%;   /* purple */
+}
+
+/* Base typography polish */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle radial background helper */
+.bg-radial-soft {
+  background-image: radial-gradient(1200px 600px at 50% -10%, hsl(var(--brand-from)/0.14), transparent 60%),
+    radial-gradient(800px 400px at 110% 110%, hsl(var(--brand-to)/0.10), transparent 60%);
+}
+
+/* Tiny noise overlay (SVG data URI) */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/ filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}

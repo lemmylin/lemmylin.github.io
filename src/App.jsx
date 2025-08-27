@@ -60,7 +60,7 @@ export default function App() {
   return (
     <div
       className={
-        "min-h-screen selection:bg-indigo-500/40 " +
+        "min-h-screen font-sans selection:bg-indigo-500/40 antialiased " +
         (isDark ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900")
       }
     >
@@ -70,10 +70,10 @@ export default function App() {
       >
         Skip to content
       </a>
-      {/* Decorative background */}
+      {/* Decorative background: soft radial + noise overlay */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-[-10%] h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl" />
-        <div className="absolute right-[-10%] bottom-[-10%] h-[32rem] w-[32rem] rounded-full bg-purple-500/10 blur-3xl" />
+        <div className="absolute inset-[-10%] bg-radial-soft" />
+        <div className="absolute inset-0 bg-noise" />
       </div>
 
       <Header isDark={isDark} mode={mode} cycleMode={cycleMode} />

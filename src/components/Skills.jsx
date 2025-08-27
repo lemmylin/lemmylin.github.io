@@ -10,8 +10,8 @@ export default function Skills({ skills, isDark }) {
           <div
             key={cat}
             className={
-              "rounded-2xl p-6 shadow " +
-              (isDark ? "border border-white/10 bg-white/5" : "border border-black/10 bg-black/5")
+              "rounded-2xl p-6 shadow-sm transition hover:shadow-md ring-1 ring-inset " +
+              (isDark ? "ring-white/10 bg-white/5" : "ring-black/10 bg-white/60")
             }
           >
             <h4 className={"text-base font-semibold " + (isDark ? "text-indigo-300" : "text-indigo-700")}>
@@ -28,4 +28,3 @@ export default function Skills({ skills, isDark }) {
     </Section>
   );
 }
-

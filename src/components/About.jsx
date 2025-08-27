@@ -3,7 +3,7 @@ import Section from "./Section.jsx";
 
 export default function About({ isDark }) {
   return (
-    <Section id="about" title="About" dark={isDark}>
+    <Section id="about" title="About" dark={isDark} divider={false}>
       <div className={"prose max-w-none " + (isDark ? "prose-invert" : "") }>
         <p>
           I work close to the hardware—NXP S32K3, bootloaders, MCAL, comms—and keep
@@ -14,4 +14,3 @@ export default function About({ isDark }) {
     </Section>
   );
 }
-

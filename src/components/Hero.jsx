@@ -50,7 +50,14 @@ export default function Hero({ profile, isDark }) {
       transition={{ duration: 0.6 }}
     >
       <div className="order-2 lg:order-1">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{profile.name}</h1>
+        <h1
+          className={
+            "text-4xl font-bold tracking-tight sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r " +
+            (isDark ? "from-indigo-400 to-purple-400" : "from-indigo-600 to-purple-600")
+          }
+        >
+          {profile.name}
+        </h1>
         <p className={"mt-2 text-lg " + (isDark ? "text-indigo-300" : "text-indigo-700")}>{profile.title}</p>
         <p className={"mt-4 max-w-xl " + (isDark ? "text-white/80" : "text-slate-700")}>{profile.summary}</p>
 
@@ -77,7 +84,7 @@ export default function Hero({ profile, isDark }) {
       </div>
 
       <div className="order-1 lg:order-2">
-        <div className="relative mx-auto h-56 w-56 overflow-hidden rounded-2xl shadow-2xl sm:h-72 sm:w-72 lg:h-80 lg:w-80">
+        <div className="relative mx-auto h-56 w-56 overflow-hidden rounded-2xl shadow-2xl sm:h-72 sm:w-72 lg:h-80 lg:w-80 ring-2 ring-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.25)]">
           <img src={profile.headshotUrl} alt={`${profile.name} headshot`} className="h-full w-full object-cover" />
           <div className="absolute inset-0 ring-1 ring-white/15" />
         </div>

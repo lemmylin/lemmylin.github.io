@@ -9,8 +9,8 @@ export default function Education({ education, isDark }) {
           <div
             key={e.school}
             className={
-              "rounded-2xl p-6 shadow " +
-              (isDark ? "border border-white/10 bg-white/5" : "border border-black/10 bg-black/5")
+              "rounded-2xl p-6 shadow-sm transition hover:shadow-md ring-1 ring-inset " +
+              (isDark ? "ring-white/10 bg-white/5" : "ring-black/10 bg-white/60")
             }
           >
             <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -33,4 +33,3 @@ export default function Education({ education, isDark }) {
     </Section>
   );
 }
-
