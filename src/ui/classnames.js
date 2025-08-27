@@ -35,5 +35,9 @@ export const styles = {
       dark ? "border-white/15 bg-white/10 text-white hover:bg-white/15" : "border-black/10 bg-white/50 text-slate-900 hover:bg-white/70",
       show ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-2"
     ),
+  textMuted: (dark) => (dark ? "text-white/70" : "text-slate-600"),
+  textSubtle: (dark) => (dark ? "text-white/60" : "text-slate-500"),
+  textBody: (dark) => (dark ? "text-white/80" : "text-slate-700"),
+  accentText: (dark) => (dark ? "text-indigo-300" : "text-indigo-700"),
+  hoverRow: (dark) => (dark ? "hover:bg-white/5" : "hover:bg-black/5"),
 };
-

@@ -39,11 +39,11 @@ export default function Hero({ profile, isDark }) {
         </h1>
         <p className={"mt-2 text-lg " + (isDark ? "text-indigo-300" : "text-indigo-700")}>{profile.title}</p>
         {profile.tagline ? (
-          <p className={"mt-1 text-base " + (isDark ? "text-white/80" : "text-slate-700")}>
+          <p className={"mt-1 text-base " + styles.textBody(isDark)}>
             {profile.tagline}
           </p>
         ) : null}
-        <p className={"mt-4 max-w-xl " + (isDark ? "text-white/80" : "text-slate-700")}>{profile.summary}</p>
+        <p className={"mt-4 max-w-xl " + styles.textBody(isDark)}>{profile.summary}</p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Badge dark={isDark}>{profile.location}</Badge>
@@ -53,12 +53,7 @@ export default function Hero({ profile, isDark }) {
                 href={l.href}
                 target={l.external ? "_blank" : undefined}
                 rel={l.external ? "noreferrer" : undefined}
-                className={
-                  "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
-                  (isDark
-                    ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                    : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
-                }
+                className={styles.glassButton(isDark) + " rounded-full text-sm px-3 py-1"}
               >
                 {(() => {
                   const I = iconFor(l.label);

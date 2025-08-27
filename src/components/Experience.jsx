@@ -12,11 +12,11 @@ export default function Experience({ experience, isDark }) {
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <div>
                 <h3 className="text-xl font-semibold">{exp.role}</h3>
-                <p className={isDark ? "text-white/70" : "text-slate-600"}>{exp.company}</p>
+                <p className={styles.textMuted(isDark)}>{exp.company}</p>
               </div>
-              <p className={"text-sm " + (isDark ? "text-white/60" : "text-slate-500")}>{exp.period}</p>
+              <p className={"text-sm " + styles.textSubtle(isDark)}>{exp.period}</p>
             </div>
-            <ul className={"mt-4 list-disc space-y-2 pl-5 " + (isDark ? "text-white/85" : "text-slate-700")}>
+            <ul className={"mt-4 list-disc space-y-2 pl-5 " + styles.textBody(isDark)}>
               {exp.bullets.map((b, i) => (
                 <li key={i}>{b}</li>
               ))}

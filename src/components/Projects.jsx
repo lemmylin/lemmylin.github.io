@@ -11,8 +11,8 @@ export default function Projects({ projects, isDark }) {
         {projects.map((p) => (
           <div key={p.name} className={cn(styles.card(isDark), "group relative overflow-hidden p-6")}> 
             <h3 className="text-lg font-semibold">{p.name}</h3>
-            <p className={"mt-2 " + (isDark ? "text-white/80" : "text-slate-700")}>{p.description}</p>
-            <ul className={"mt-3 list-disc space-y-1 pl-5 " + (isDark ? "text-white/85" : "text-slate-700")}>
+            <p className={"mt-2 " + styles.textBody(isDark)}>{p.description}</p>
+            <ul className={"mt-3 list-disc space-y-1 pl-5 " + styles.textBody(isDark)}>
               {p.highlights.map((h) => (
                 <li key={h}>{h}</li>
               ))}

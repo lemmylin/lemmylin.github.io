@@ -76,15 +76,7 @@ export default function Header({ isDark, mode, cycleMode }) {
           <a className={styles.navLink(isDark)} href="#projects">Projects</a>
           <a className={styles.navLink(isDark)} href="#skills">Skills</a>
           <a className={styles.navLink(isDark)} href="#education">Education</a>
-          <a
-            className={
-              "rounded-lg px-3 py-1 inline-flex items-center gap-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
-              (isDark
-                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
-            }
-            href="#contact"
-          >
+          <a className={styles.glassButton(isDark)} href="#contact">
             Contact
           </a>
           <button
@@ -106,12 +98,7 @@ export default function Header({ isDark, mode, cycleMode }) {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             ref={btnRef}
-            className={
-              "inline-flex items-center rounded-lg p-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
-              (isDark
-                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
-            }
+            className={styles.glassButton(isDark)}
           >
             {menuOpen ? (
               // X icon
@@ -140,19 +127,14 @@ export default function Header({ isDark, mode, cycleMode }) {
             }
           >
             <div className="flex flex-col p-1 text-sm">
-              <a onClick={closeMenu} className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-lg px-3 py-2"} href="#about">About</a>
-              <a onClick={closeMenu} className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-lg px-3 py-2"} href="#experience">Experience</a>
-              <a onClick={closeMenu} className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-lg px-3 py-2"} href="#projects">Projects</a>
-              <a onClick={closeMenu} className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-lg px-3 py-2"} href="#skills">Skills</a>
-              <a onClick={closeMenu} className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-lg px-3 py-2"} href="#education">Education</a>
+              <a onClick={closeMenu} className={styles.hoverRow(isDark) + " rounded-lg px-3 py-2"} href="#about">About</a>
+              <a onClick={closeMenu} className={styles.hoverRow(isDark) + " rounded-lg px-3 py-2"} href="#experience">Experience</a>
+              <a onClick={closeMenu} className={styles.hoverRow(isDark) + " rounded-lg px-3 py-2"} href="#projects">Projects</a>
+              <a onClick={closeMenu} className={styles.hoverRow(isDark) + " rounded-lg px-3 py-2"} href="#skills">Skills</a>
+              <a onClick={closeMenu} className={styles.hoverRow(isDark) + " rounded-lg px-3 py-2"} href="#education">Education</a>
               <a
                 onClick={closeMenu}
-                className={
-                  "mt-1 rounded-lg px-3 py-2 text-center inline-flex items-center justify-center border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
-                  (isDark
-                    ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                    : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
-                }
+                className={styles.glassButton(isDark) + " mt-1 justify-center"}
                 href="#contact"
               >
                 Contact
@@ -164,12 +146,7 @@ export default function Header({ isDark, mode, cycleMode }) {
                 }}
                 aria-label={`Theme: ${mode}`}
                 title={`Theme: ${mode}`}
-                className={
-                  "mt-2 inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
-                  (isDark
-                    ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                    : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
-                }
+                className={styles.glassButton(isDark) + " mt-2 justify-center"}
               >
                 <ModeIcon />
                 <span>{mode.charAt(0).toUpperCase() + mode.slice(1)}</span>

@@ -11,12 +11,12 @@ export default function Education({ education, isDark }) {
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <div>
                 <h3 className="text-lg font-semibold">{e.school}</h3>
-                <p className={isDark ? "text-white/80" : "text-slate-700"}>{e.degree}</p>
+                <p className={styles.textBody(isDark)}>{e.degree}</p>
               </div>
-              <p className={"text-sm " + (isDark ? "text-white/60" : "text-slate-500")}>{e.period}</p>
+              <p className={"text-sm " + styles.textSubtle(isDark)}>{e.period}</p>
             </div>
             {e.notes?.length ? (
-              <ul className={"mt-3 list-disc space-y-1 pl-5 " + (isDark ? "text-white/85" : "text-slate-700")}>
+              <ul className={"mt-3 list-disc space-y-1 pl-5 " + styles.textBody(isDark)}>
                 {e.notes.map((n, i) => (
                   <li key={i}>{n}</li>
                 ))}
