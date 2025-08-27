@@ -17,12 +17,12 @@ export default function About({ isDark }) {
           {aboutExtras?.bio ? <p>{aboutExtras.bio}</p> : null}
         </div>
 
-        {/* Quick bits */}
-        <div className="mt-8 space-y-4 lg:mt-0">
+        {/* Quick bits: horizontal row under bio on large screens */}
+        <div className="mt-8 flex flex-col gap-4 lg:col-span-3 lg:mt-6 lg:flex-row lg:flex-wrap">
           {aboutExtras?.values?.length ? (
             <div
               className={
-                "rounded-xl p-4 ring-1 ring-inset shadow-sm " +
+                "min-w-[240px] flex-1 rounded-xl p-4 ring-1 ring-inset shadow-sm " +
                 (isDark ? "ring-white/10 bg-white/5" : "ring-black/10 bg-white/60")
               }
             >
@@ -43,7 +43,7 @@ export default function About({ isDark }) {
           {aboutExtras?.hobbies?.length ? (
             <div
               className={
-                "rounded-xl p-4 ring-1 ring-inset shadow-sm " +
+                "min-w-[240px] flex-1 rounded-xl p-4 ring-1 ring-inset shadow-sm " +
                 (isDark ? "ring-white/10 bg-white/5" : "ring-black/10 bg-white/60")
               }
             >
@@ -59,7 +59,7 @@ export default function About({ isDark }) {
           {aboutExtras?.fun_facts?.length ? (
             <div
               className={
-                "rounded-xl p-4 ring-1 ring-inset shadow-sm " +
+                "min-w-[240px] flex-1 rounded-xl p-4 ring-1 ring-inset shadow-sm " +
                 (isDark ? "ring-white/10 bg-white/5" : "ring-black/10 bg-white/60")
               }
             >
