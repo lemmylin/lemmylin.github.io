@@ -59,6 +59,11 @@ export default function Hero({ profile, isDark }) {
           {profile.name}
         </h1>
         <p className={"mt-2 text-lg " + (isDark ? "text-indigo-300" : "text-indigo-700")}>{profile.title}</p>
+        {profile.tagline ? (
+          <p className={"mt-1 text-base " + (isDark ? "text-white/80" : "text-slate-700")}>
+            {profile.tagline}
+          </p>
+        ) : null}
         <p className={"mt-4 max-w-xl " + (isDark ? "text-white/80" : "text-slate-700")}>{profile.summary}</p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">

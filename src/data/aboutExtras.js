@@ -1,0 +1,23 @@
+const aboutExtras = {
+  bio: "I’m an Embedded Software Engineer passionate about building reliable software for automotive ECUs and tools. I thrive at the intersection of hardware and software, from wrangling CAN/SENT data to designing application layers that teams can maintain. I enjoy solving complex problems in a clean, testable way and working across teams and regions to ship high-quality products.",
+  values: [
+    "Write clean, human-readable code over opaque auto-generated blobs",
+    "Cross-functional collaboration (engineering + legal + international teams)",
+    "Continuous learning through tinkering and side projects",
+  ],
+  hobbies: [
+    "Tinkering with Tesla (OBD reprogramming, Comma AI ADAS experiments)",
+    "Biking and skateboarding outdoors",
+    "Road trips and hiking (Smoky Mountains, Pictured Rocks, Acadia, Disney)",
+    "Cooking experiments (air fryer recipes, Korean short ribs)",
+    "Cats (Mia and Ash)",
+  ],
+  fun_facts: [
+    "Born in Shenzhen, China, moved to Michigan for high school",
+    "Built a Mac mini M4 home server with VMware and DAS storage",
+    "Enjoy karaoke (pop songs, no Bieber 😅)",
+  ],
+};
+
+export default aboutExtras;
+

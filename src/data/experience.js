@@ -9,6 +9,7 @@ const experience = [
       "DUCA (Chevy Corvette): Integrated DUCA motor-control algorithm into PLA—improved shift time/overshoot with zero major integration errors; supported GM screening and maintained troubleshooting docs.",
       "Automation: Python + CAN scripts for flashing, log parsing, and test execution—reduced validation cycle time and streamlined bench testing.",
       "Collaboration: Aligned HW/Systems/SW across U.S., China, and India (TCS/KPIT) with 1‑day turnaround on blockers; maintained on-time milestones with zero customer-visible defects.",
+      "Key projects: TACM application layer rewrite; DUCA screening and reuse; PLA motor-control integration & calibration; Motion sensor development (ISO 16844‑3).",
     ],
     tags: [
       "C/C++",
@@ -22,6 +23,14 @@ const experience = [
       "Jira",
       "SVN",
       "Agile",
+      "S32DS",
+      "WinIDEA",
+      "EB Tresos",
+      "KSAR",
+      "Vector CANoe",
+      "Vehicle Spy",
+      "PCAN",
+      "Git",
     ],
   },
   {
@@ -37,4 +46,3 @@ const experience = [
 ];
 
 export default experience;
-

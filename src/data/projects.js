@@ -38,7 +38,31 @@ const projects = [
     highlights: ["MVVM architecture", "Realtime sync", "Offline caching"],
     stack: ["Flutter", "Dart", "Firebase"],
   },
+  {
+    name: "Arduino SENT→CAN Converter",
+    description:
+      "Captured SENT sensor data (3/6 nibbles) on Arduino and transmitted mapped fields over a new CAN ID for bench visualization and testing.",
+    highlights: [
+      "Edge/timing handling",
+      "Flexible CAN mapping",
+      "Bench-friendly diagnostics",
+    ],
+    stack: ["Arduino", "C++", "CAN libraries"],
+  },
+  {
+    name: "Labubu Restock Bot",
+    description:
+      "Automated Pop Mart Labubu restock tracking using Selenium and Discord webhooks for real-time alerts.",
+    highlights: ["Headless scraping", "Webhook alerts", "Rate limiting"],
+    stack: ["Python", "Selenium", "Discord API"],
+  },
+  {
+    name: "Mac mini Home Server",
+    description:
+      "Configured a Mac mini M4 with a headless Windows VM on VMware and DAS storage for a personal dev lab and storage system.",
+    highlights: ["Headless VM", "Storage setup", "Home lab"],
+    stack: ["VMware", "macOS", "Mini‑SAS"],
+  },
 ];
 
 export default projects;
-
