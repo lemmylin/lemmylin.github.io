@@ -35,13 +35,50 @@ const experience = [
   },
   {
     company: "Targets' Tip",
-    role: "Full‑Stack Developer / Consultant (contract)",
+    role: "Full Stack Developer / Consultant (contract)",
     period: "Aug 2022 — May 2023",
     bullets: [
-      "Built and maintained a cross‑platform app (Flutter/Dart) to help academicians connect and address academic harassment.",
-      "Integrated Firebase (auth, realtime DB, storage); implemented responsive UI and MVVM-ish architecture; provided guidance to other teams on best practices.",
+      "Developed and maintained a cross-platform app using Flutter and Dart to help academicians connect and address academic harassment.",
+      "Integrated Google Firebase for real-time database, user authentication, and storage.",
+      "Consulted for other development teams on best practices and technologies.",
+      "Full-stack experience: front-end UIs, APIs, back-end systems.",
+      "Stayed current with software trends and mentored others.",
     ],
     tags: ["Flutter", "Dart", "Firebase", "Full‑stack"],
+  },
+  {
+    company: "Fidelity Investments",
+    role: "Systems Engineering Intern",
+    period: "Jun 2022 — Aug 2022",
+    bullets: [
+      "Provided end-user technology support for office equipment and A/V.",
+      "Troubleshot Microsoft OS, Office apps, and internal/external applications.",
+      "Built and deployed computers, remote desktops, servers, and VMs using VMware, HP iLO, and custom imaging tools.",
+      "Assisted regional support and operations teams to deliver customer requests and projects.",
+    ],
+    tags: ["Windows", "VMware", "HP iLO", "Microsoft 365"],
+  },
+  {
+    company: "MSU Student Life & Engagement",
+    role: "Retail Attendant at Spartan Spirit Shop (Part‑time)",
+    period: "May 2021 — May 2023",
+    bullets: [
+      "Greeted customers, assisted with purchases, and resolved complaints professionally.",
+      "Processed cash and card transactions accurately using POS systems.",
+      "Maintained a clean, organized retail environment and attractive merchandise displays.",
+      "Ensured proper tagging, pricing, and accurate record-keeping.",
+    ],
+    tags: ["Retail", "Customer Service", "POS"],
+  },
+  {
+    company: "Michigan State University — Retail Services",
+    role: "Student Food Service Assistant (Part‑time)",
+    period: "Feb 2021 — May 2021",
+    bullets: [
+      "Delivered culinary services and customer experiences for campus residents and guests.",
+      "Completed tasks in a timely manner with minimal supervision.",
+    ],
+    tags: ["Food Service", "Customer Service"],
   },
 ];
 
