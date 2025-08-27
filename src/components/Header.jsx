@@ -70,15 +70,19 @@ export default function Header({ isDark, mode, cycleMode }) {
       }
     >
       <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#top" className="flex items-center gap-2" aria-label="Home">
-          <span
-            className={
-              "font-signature select-none text-2xl leading-none " +
-              (isDark ? "text-indigo-300" : "text-indigo-700")
-            }
-          >
-            Lemmy
-          </span>
+        <a href="#top" className="relative flex items-center gap-2" aria-label="Home">
+          <span className="sr-only">Lemmy Lin</span>
+          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" className="drop-shadow-sm">
+            <defs>
+              <linearGradient id="llgrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor={isDark ? "#818CF8" : "#4F46E5"} />
+                <stop offset="100%" stopColor={isDark ? "#C084FC" : "#7C3AED"} />
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#llgrad)" />
+            <path d="M10 10v12h5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M17 10v12h5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </a>
         {/* Desktop nav */}
         <div className="hidden items-center gap-2 text-sm md:flex">

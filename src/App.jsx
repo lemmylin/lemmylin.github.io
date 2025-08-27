@@ -13,6 +13,7 @@ import Skills from "./components/Skills.jsx";
 import Education from "./components/Education.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
+import Personality from "./components/Personality.jsx";
 
 export default function App() {
   // Theme: auto | light | dark
@@ -92,6 +93,8 @@ export default function App() {
         <Education education={education} isDark={isDark} />
 
         <Contact profile={profile} isDark={isDark} />
+
+        <Personality isDark={isDark} />
       </main>
 
       <Footer profile={profile} isDark={isDark} />

@@ -10,7 +10,7 @@ const profile = {
   links: [
     { label: "Site", href: "https://lemmylin.github.io", external: true },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/lemmy-lin-1a4059217", external: true },
-    { label: "GitHub", href: "https://github.com/", external: true },
+    { label: "GitHub", href: "https://github.com/lemmylin", external: true },
     { label: "Instagram", href: "https://www.instagram.com/lemmylin", external: true },
     { label: "Email", href: "mailto:lemmylin@outlook.com", external: true },
   ],
