@@ -1,51 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Badge from "./Badge.jsx";
+import { IconGlobe, IconLinkedIn, IconInstagram, IconEmail, IconGitHub } from "../ui/icons.jsx";
 
 export default function Hero({ profile, isDark }) {
-  const Icon = ({ label }) => {
-    const common = { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", "aria-hidden": true };
+  const iconFor = (label) => {
     switch (label) {
       case "Site":
-        return (
-          <svg {...common}>
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        );
+        return IconGlobe;
       case "LinkedIn":
-        return (
-          <svg {...common}>
-            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" />
-            <circle cx="8" cy="10" r="1.2" fill="currentColor" />
-            <path d="M7.5 16.5V12.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            <path d="M12 16.5v-3a2 2 0 0 1 2-2c1.1 0 2 .9 2 2v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        );
+        return IconLinkedIn;
       case "Instagram":
-        return (
-          <svg {...common}>
-            <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" strokeWidth="2" />
-            <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
-            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
-          </svg>
-        );
-      case "GitHub":
-        return (
-          <svg {...common}>
-            <path
-              d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.7-1.4-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 .9-2.8-.1-.2-.4-1.3.1-2.7 0 0 .8-.3 2.8 1.1.8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c2-1.4 2.8-1.1 2.8-1.1.5 1.4.2 2.5.1 2.7.6.8.9 1.8.9 2.8 0 3.9-2.3 4.7-4.5 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2z"
-              fill="currentColor"
-            />
-          </svg>
-        );
+        return IconInstagram;
       case "Email":
-        return (
-          <svg {...common}>
-            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="2" />
-            <path d="M22 8l-10 6L2 8" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        );
+        return IconEmail;
+      case "GitHub":
+        return IconGitHub;
       default:
         return null;
     }
@@ -90,7 +60,10 @@ export default function Hero({ profile, isDark }) {
                     : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
                 }
               >
-                <Icon label={l.label} />
+                {(() => {
+                  const I = iconFor(l.label);
+                  return I ? <I /> : null;
+                })()}
                 <span>{l.label}</span>
               </a>
             ))}

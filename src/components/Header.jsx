@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { styles } from "../ui/classnames.js";
+import { IconLLMonogram } from "../ui/icons.jsx";
 
 export default function Header({ isDark, mode, cycleMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,36 +63,19 @@ export default function Header({ isDark, mode, cycleMode }) {
   };
 
   return (
-    <header
-      className={
-        "sticky top-0 z-20 border-b backdrop-blur after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-px after:h-px after:bg-gradient-to-r after:from-transparent " +
-        (isDark
-          ? "border-white/10 bg-slate-950/70 after:via-white/20 after:to-transparent"
-          : "border-black/10 bg-white/70 after:via-black/10 after:to-transparent")
-      }
-    >
+    <header className={styles.headerContainer(isDark)}>
       <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="#top" className="relative flex items-center gap-2" aria-label="Home">
           <span className="sr-only">Lemmy Lin</span>
-          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" className="drop-shadow-sm">
-            <defs>
-              <linearGradient id="llgrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor={isDark ? "#818CF8" : "#4F46E5"} />
-                <stop offset="100%" stopColor={isDark ? "#C084FC" : "#7C3AED"} />
-              </linearGradient>
-            </defs>
-            <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#llgrad)" />
-            <path d="M10 10v12h5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M17 10v12h5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <IconLLMonogram isDark={isDark} />
         </a>
         {/* Desktop nav */}
         <div className="hidden items-center gap-2 text-sm md:flex">
-          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#about">About</a>
-          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#experience">Experience</a>
-          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#projects">Projects</a>
-          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#skills">Skills</a>
-          <a className={(isDark ? "hover:bg-white/5" : "hover:bg-black/5") + " rounded-md px-2 py-1 font-medium"} href="#education">Education</a>
+          <a className={styles.navLink(isDark)} href="#about">About</a>
+          <a className={styles.navLink(isDark)} href="#experience">Experience</a>
+          <a className={styles.navLink(isDark)} href="#projects">Projects</a>
+          <a className={styles.navLink(isDark)} href="#skills">Skills</a>
+          <a className={styles.navLink(isDark)} href="#education">Education</a>
           <a
             className={
               "rounded-lg px-3 py-1 inline-flex items-center gap-2 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
@@ -106,12 +91,7 @@ export default function Header({ isDark, mode, cycleMode }) {
             onClick={cycleMode}
             aria-label={`Theme: ${mode}`}
             title={`Theme: ${mode}`}
-            className={
-              "inline-flex items-center gap-2 rounded-lg px-3 py-1 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition " +
-              (isDark
-                ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60")
-            }
+            className={styles.glassButton(isDark)}
           >
             <ModeIcon />
             <span className="hidden sm:inline">{mode.charAt(0).toUpperCase() + mode.slice(1)}</span>

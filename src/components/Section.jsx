@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { styles } from "../ui/classnames.js";
 
 export default function Section({ id, title, children, dark, divider = true }) {
   const prefersReduced = useReducedMotion();
@@ -15,12 +16,7 @@ export default function Section({ id, title, children, dark, divider = true }) {
       viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <h2
-        className={
-          "mb-6 text-2xl font-semibold tracking-tight " +
-          (dark ? "text-white/90" : "text-slate-900")
-        }
-      >
+      <h2 className={styles.sectionTitle(dark)}>
         {title}
       </h2>
       {children}

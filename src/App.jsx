@@ -1,4 +1,5 @@
 import React from "react";
+import { styles } from "./ui/classnames.js";
 import profile from "./data/profile.js";
 import experience from "./data/experience.js";
 import projects from "./data/projects.js";
@@ -101,13 +102,7 @@ export default function App() {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={
-          "fixed bottom-4 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-lg backdrop-blur-md backdrop-saturate-150 transition md:bottom-6 md:right-6 " +
-          (isDark
-            ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-            : "border-black/10 bg-white/50 text-slate-900 hover:bg-white/70") +
-          (showTop ? " opacity-100 translate-y-0" : " pointer-events-none opacity-0 translate-y-2")
-        }
+        className={styles.backToTop(isDark, showTop)}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
