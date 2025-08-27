@@ -6,7 +6,7 @@ import { styles, cn } from "../ui/classnames.js";
 export default function Skills({ skills, isDark }) {
   return (
     <Section id="skills" title="Skills" dark={isDark}>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className={styles.layout.gridCols1_2_3}>
         {Object.entries(skills).map(([cat, items]) => (
           <div key={cat} className={cn(styles.card(isDark), "p-6")}>
             <h4 className={"text-base font-semibold " + styles.accentText(isDark)}>

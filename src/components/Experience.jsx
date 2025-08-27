@@ -6,7 +6,7 @@ import { styles, cn } from "../ui/classnames.js";
 export default function Experience({ experience, isDark }) {
   return (
     <Section id="experience" title="Experience" dark={isDark}>
-      <div className="grid gap-6">
+      <div className={styles.layout.gridGap}>
         {experience.map((exp) => (
           <div key={exp.company + exp.role} className={cn(styles.card(isDark), "p-6")}> 
             <div className="flex flex-wrap items-baseline justify-between gap-3">

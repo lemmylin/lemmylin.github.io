@@ -7,7 +7,7 @@ import { IconExternal } from "../ui/icons.jsx";
 export default function Projects({ projects, isDark }) {
   return (
     <Section id="projects" title="Projects" dark={isDark}>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className={styles.layout.gridCols1_2}>
         {projects.map((p) => (
           <div key={p.name} className={cn(styles.card(isDark), "group relative overflow-hidden p-6")}> 
             <h3 className="text-lg font-semibold">{p.name}</h3>

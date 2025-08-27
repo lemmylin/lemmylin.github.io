@@ -40,4 +40,11 @@ export const styles = {
   textBody: (dark) => (dark ? "text-white/80" : "text-slate-700"),
   accentText: (dark) => (dark ? "text-indigo-300" : "text-indigo-700"),
   hoverRow: (dark) => (dark ? "hover:bg-white/5" : "hover:bg-black/5"),
+  layout: {
+    aboutGrid: "lg:grid lg:grid-cols-3 lg:gap-8",
+    aboutBioCol: "lg:col-span-2",
+    gridCols1_2: "grid grid-cols-1 gap-6 md:grid-cols-2",
+    gridCols1_2_3: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3",
+    gridGap: "grid gap-6",
+  },
 };

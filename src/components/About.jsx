@@ -16,14 +16,11 @@ export default function About({ isDark }) {
   const funShown = expanded.fun ? funFacts : funFacts.slice(0, 2);
   return (
     <Section id="about" title="About" dark={isDark} divider={false}>
-      <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-        {/* Main bio */}
-        <div className={cn(styles.prose(isDark), "lg:col-span-2") }>
-          <p>
-            I work close to the hardware—NXP S32K3, bootloaders, MCAL, comms—and keep
-            codebases sane even when original models/tools vanish. I like measured
-            refactors, strong interfaces, and diagnostics you can trust on a Friday at 5pm.
-          </p>
+      <div className={styles.layout.aboutGrid}>
+        <div className={cn(styles.prose(isDark), styles.layout.aboutBioCol)}>
+          {(aboutExtras?.intro || []).map((p) => (
+            <p key={p}>{p}</p>
+          ))}
           {aboutExtras?.bio ? <p>{aboutExtras.bio}</p> : null}
         </div>
 

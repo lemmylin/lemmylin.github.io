@@ -5,7 +5,7 @@ import { styles, cn } from "../ui/classnames.js";
 export default function Education({ education, isDark }) {
   return (
     <Section id="education" title="Education" dark={isDark}>
-      <div className="grid gap-6">
+      <div className={styles.layout.gridGap}>
         {education.map((e) => (
           <div key={e.school} className={cn(styles.card(isDark), "p-6")}>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
