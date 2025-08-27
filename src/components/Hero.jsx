@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Badge from "./Badge.jsx";
+import { styles } from "../ui/classnames.js";
 import { IconGlobe, IconLinkedIn, IconInstagram, IconEmail, IconGitHub } from "../ui/icons.jsx";
 
 export default function Hero({ profile, isDark }) {
