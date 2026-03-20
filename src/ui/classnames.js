@@ -1,50 +1,62 @@
-// Small utilities to keep JSX clean and consistent
+// Design system utilities
 export const cn = (...parts) => parts.filter(Boolean).join(" ");
 
 export const styles = {
-  card: (dark) =>
+  // Cards
+  card: () => "glass-card glass-card-hover rounded-xl shimmer",
+
+  // Buttons
+  primaryButton: "btn-primary",
+  ghostButton: "btn-ghost",
+
+  // Badges
+  badge: () => "tech-badge",
+
+  // Nav
+  navLink: (active) =>
     cn(
-      "rounded-2xl ring-1 ring-inset shadow-sm transition hover:shadow-md",
-      dark ? "ring-white/10 bg-white/5" : "ring-black/10 bg-white/60"
+      "relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 rounded-md",
+      active
+        ? "text-sky-400 bg-sky-400/8"
+        : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
     ),
-  glassButton: (dark) =>
+
+  navLinkMobile: (active) =>
     cn(
-      "inline-flex items-center gap-2 rounded-lg px-3 py-1 border shadow-sm backdrop-blur-md backdrop-saturate-150 transition",
-      dark
-        ? "border-white/15 bg-white/10 text-white hover:bg-white/15"
-        : "border-black/10 bg-white/40 text-slate-900 hover:bg-white/60"
+      "block w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
+      active
+        ? "text-sky-400 bg-sky-400/10"
+        : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
     ),
-  primaryButton:
-    "rounded-xl px-5 py-2 font-medium inline-flex items-center gap-2 text-white shadow-lg transition bg-gradient-to-br from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500",
-  navLink: (dark) => cn("rounded-md px-2 py-1 font-medium", dark ? "hover:bg-white/5" : "hover:bg-black/5"),
-  sectionTitle: (dark) => cn("mb-6 text-2xl font-semibold tracking-tight", dark ? "text-white/90" : "text-slate-900"),
-  prose: (dark) => cn("prose max-w-none", dark ? "prose-invert" : ""),
-  badge: (dark) =>
+
+  // Header
+  headerContainer: (scrolled) =>
     cn(
-      "inline-flex items-center rounded-full px-3 py-1 text-sm ring-1 ring-inset transition shadow-sm backdrop-blur-md backdrop-saturate-150 hover:-translate-y-0.5 hover:shadow",
-      dark ? "ring-white/15 bg-white/10 text-white" : "ring-black/10 bg-white/40 text-slate-900"
+      "fixed top-0 inset-x-0 z-50 transition-all duration-300",
+      scrolled
+        ? "backdrop-blur-xl bg-[#04050d]/80 border-b border-sky-400/10 shadow-lg shadow-black/30"
+        : "backdrop-blur-sm bg-transparent"
     ),
-  headerContainer: (dark) =>
+
+  // Section
+  sectionLabel: "section-label",
+
+  // Text
+  textMuted: "text-slate-400",
+  textSubtle: "text-slate-500",
+  textBody: "text-slate-300",
+  accentText: "text-sky-400",
+
+  // Back to top
+  backToTop: (show) =>
     cn(
-      "sticky top-0 z-20 border-b backdrop-blur after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-px after:h-px after:bg-gradient-to-r after:from-transparent",
-      dark ? "border-white/10 bg-slate-950/70 after:via-white/20 after:to-transparent" : "border-black/10 bg-white/70 after:via-black/10 after:to-transparent"
+      "fixed bottom-6 right-6 z-40 h-10 w-10 rounded-full flex items-center justify-center",
+      "glass-card border border-sky-400/20 text-sky-400",
+      "transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_0_20px_rgba(56,189,248,0.3)]",
+      show ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
     ),
-  backToTop: (dark, show) =>
-    cn(
-      "fixed bottom-4 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-lg backdrop-blur-md backdrop-saturate-150 transition md:bottom-6 md:right-6",
-      dark ? "border-white/15 bg-white/10 text-white hover:bg-white/15" : "border-black/10 bg-white/50 text-slate-900 hover:bg-white/70",
-      show ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-2"
-    ),
-  textMuted: (dark) => (dark ? "text-white/70" : "text-slate-600"),
-  textSubtle: (dark) => (dark ? "text-white/60" : "text-slate-500"),
-  textBody: (dark) => (dark ? "text-white/80" : "text-slate-700"),
-  accentText: (dark) => (dark ? "text-indigo-300" : "text-indigo-700"),
-  hoverRow: (dark) => (dark ? "hover:bg-white/5" : "hover:bg-black/5"),
-  layout: {
-    aboutGrid: "lg:grid lg:grid-cols-3 lg:gap-8",
-    aboutBioCol: "lg:col-span-2",
-    gridCols1_2: "grid grid-cols-1 gap-6 md:grid-cols-2",
-    gridCols1_2_3: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3",
-    gridGap: "grid gap-6",
-  },
+
+  // Light mode variants
+  lightCard: "bg-white/80 border border-sky-200/60 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all",
+  lightBadge: "tech-badge",
 };

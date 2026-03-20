@@ -26,9 +26,7 @@ export default function App() {
       : true
   );
   React.useEffect(() => {
-    try {
-      localStorage.setItem("theme", mode);
-    } catch {}
+    try { localStorage.setItem("theme", mode); } catch {}
   }, [mode]);
   React.useEffect(() => {
     if (!window.matchMedia) return;
@@ -52,7 +50,7 @@ export default function App() {
   // Back-to-top visibility
   const [showTop, setShowTop] = React.useState(false);
   React.useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 320);
+    const onScroll = () => setShowTop(window.scrollY > 400);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -61,50 +59,62 @@ export default function App() {
   return (
     <div
       className={
-        "min-h-screen font-sans selection:bg-indigo-500/40 antialiased " +
-        (isDark ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900")
+        "min-h-screen font-sans antialiased selection:bg-sky-500/30 " +
+        (isDark ? "bg-[#04050d] text-slate-100" : "bg-slate-50 text-slate-900")
       }
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:px-3 focus:py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500/60 "
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-sky-400/60 focus:px-3 focus:py-2 focus:outline-none"
       >
         Skip to content
       </a>
-      {/* Decorative background: soft radial + noise overlay */}
+
+      {/* Background: animated dot grid + glowing orbs */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-[-10%] bg-radial-soft" />
-        <div className="absolute inset-0 bg-noise" />
+        <div className="absolute inset-0 bg-dot-grid" />
+        {/* Animated orbs */}
+        <div
+          className="orb-cyan absolute -top-1/4 -left-1/4 h-[70vh] w-[70vh] rounded-full opacity-60"
+          style={{ animation: "orb-drift 18s ease-in-out infinite" }}
+        />
+        <div
+          className="orb-indigo absolute -bottom-1/4 -right-1/4 h-[60vh] w-[60vh] rounded-full opacity-50"
+          style={{ animation: "orb-drift 22s ease-in-out infinite reverse" }}
+        />
+        {/* Scan line overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(0deg, rgba(56,189,248,1) 0px, rgba(56,189,248,1) 1px, transparent 1px, transparent 3px)",
+            backgroundSize: "100% 3px",
+          }}
+        />
       </div>
 
       <Header isDark={isDark} mode={mode} cycleMode={cycleMode} />
 
       <main id="main">
         <Hero profile={profile} isDark={isDark} />
-
         <About isDark={isDark} />
-
         <Experience experience={experience} isDark={isDark} />
-
         <Projects projects={projects} isDark={isDark} />
-
         <Skills skills={skills} isDark={isDark} />
-
         <Education education={education} isDark={isDark} />
-
         <Contact profile={profile} isDark={isDark} />
       </main>
 
       <Footer profile={profile} isDark={isDark} />
 
-      {/* Back to Top button */}
+      {/* Back to Top */}
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={styles.backToTop(isDark, showTop)}
+        className={styles.backToTop(showTop)}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
