@@ -12,8 +12,8 @@ export default function Logo({ size = 36 }) {
     >
       <defs>
         <linearGradient id="ll-chip-grad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#f59e0b" />
-          <stop offset="100%" stopColor="#2dd4bf" />
+          <stop offset="0%" stopColor="#7c3aed" />
+          <stop offset="100%" stopColor="#db2777" />
         </linearGradient>
       </defs>
 

@@ -58,13 +58,13 @@ export default function App() {
   return (
     <div
       className={
-        "min-h-screen font-sans antialiased selection:bg-amber-500/20 " +
-        (isDark ? "bg-[#0d0900] text-slate-100" : "bg-amber-50 text-slate-900")
+        "min-h-screen font-sans antialiased selection:bg-violet-500/20 " +
+        (isDark ? "bg-[#0b0b13] text-slate-100" : "bg-slate-50 text-slate-900")
       }
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-amber-400/60 focus:px-3 focus:py-2 focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-violet-400/60 focus:px-3 focus:py-2 focus:outline-none"
       >
         Skip to content
       </a>
@@ -74,11 +74,11 @@ export default function App() {
         <div className="absolute inset-0 bg-dot-grid" />
         {/* Animated orbs */}
         <div
-          className="orb-cyan absolute -top-1/4 -left-1/4 h-[70vh] w-[70vh] rounded-full opacity-60"
+          className="orb-cyan absolute -top-1/4 -left-1/4 h-[70vh] w-[70vh] rounded-full opacity-50"
           style={{ animation: "orb-drift 18s ease-in-out infinite" }}
         />
         <div
-          className="orb-indigo absolute -bottom-1/4 -right-1/4 h-[60vh] w-[60vh] rounded-full opacity-50"
+          className="orb-indigo absolute -bottom-1/4 -right-1/4 h-[60vh] w-[60vh] rounded-full opacity-40"
           style={{ animation: "orb-drift 22s ease-in-out infinite reverse" }}
         />
       </div>
