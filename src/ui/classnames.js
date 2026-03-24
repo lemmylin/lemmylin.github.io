@@ -17,16 +17,16 @@ export const styles = {
     cn(
       "relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 rounded-md",
       active
-        ? "text-sky-400 bg-sky-400/8"
-        : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+        ? "text-sky-500 dark:text-sky-400 bg-sky-500/8 dark:bg-sky-400/8"
+        : "dark:text-slate-400 text-slate-600 dark:hover:text-slate-200 hover:text-slate-900 dark:hover:bg-white/5 hover:bg-black/5"
     ),
 
   navLinkMobile: (active) =>
     cn(
       "block w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
       active
-        ? "text-sky-400 bg-sky-400/10"
-        : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+        ? "text-sky-500 dark:text-sky-400 bg-sky-500/10 dark:bg-sky-400/10"
+        : "dark:text-slate-400 text-slate-600 dark:hover:text-slate-200 hover:text-slate-900 dark:hover:bg-white/5 hover:bg-black/5"
     ),
 
   // Header
@@ -34,7 +34,7 @@ export const styles = {
     cn(
       "fixed top-0 inset-x-0 z-50 transition-all duration-300",
       scrolled
-        ? "backdrop-blur-xl bg-[#04050d]/80 border-b border-sky-400/10 shadow-lg shadow-black/30"
+        ? "backdrop-blur-xl dark:bg-[#04050d]/85 bg-white/90 border-b dark:border-sky-400/10 border-slate-200 dark:shadow-black/30 shadow-black/5 shadow-lg"
         : "backdrop-blur-sm bg-transparent"
     ),
 

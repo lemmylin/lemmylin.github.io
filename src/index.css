@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 dark: variants */
+@variant dark (&:where(.dark, .dark *));
+
 /* ─── Fonts ─── */
 .font-signature {
   font-family: "Allura", "Great Vibes", "Dancing Script", cursive;
@@ -301,8 +304,9 @@ body {
 
 /* ─── Light mode overrides ─── */
 :root:not(.dark) .glass-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.82);
   border-color: rgba(14, 165, 233, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 :root:not(.dark) .glass-card-hover:hover {
   border-color: rgba(14, 165, 233, 0.35);
@@ -323,4 +327,38 @@ body {
     radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
     radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 28px 28px;
+}
+:root:not(.dark) .btn-ghost {
+  background: rgba(14, 165, 233, 0.07);
+  border-color: rgba(14, 165, 233, 0.25);
+  color: #475569;
+}
+:root:not(.dark) .btn-ghost:hover {
+  background: rgba(14, 165, 233, 0.13);
+  border-color: rgba(14, 165, 233, 0.45);
+  color: #0f172a;
+}
+:root:not(.dark) .typewriter-text {
+  color: #0284c7; /* sky-600 — readable on light bg */
+}
+:root:not(.dark) .typewriter-cursor::after {
+  color: #0284c7;
+}
+:root:not(.dark) .text-glow-subtle {
+  text-shadow: none;
+}
+:root:not(.dark) .text-glow-cyan {
+  text-shadow: none;
+}
+:root:not(.dark) .timeline-line {
+  background: linear-gradient(to bottom, #0ea5e9, rgba(14, 165, 233, 0.15), transparent);
+}
+:root:not(.dark) .section-label {
+  color: #0284c7;
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.3);
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.5);
 }

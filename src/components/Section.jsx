@@ -27,14 +27,14 @@ export default function Section({ id, title, children, dark, divider = true }) {
       {/* Section header */}
       <div className="mb-12 flex items-center gap-4">
         {num && (
-          <span className="font-mono-tech text-xs text-sky-400/60 select-none">
+          <span className="font-mono-tech text-xs text-amber-400/60 select-none">
             // {num}
           </span>
         )}
-        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight dark:text-white text-slate-900 sm:text-3xl">
           {title.toUpperCase()}
         </h2>
-        <div className="flex-1 h-px bg-gradient-to-r from-sky-400/30 via-sky-400/10 to-transparent" />
+        <div className="flex-1 h-px bg-gradient-to-r from-amber-400/30 via-amber-400/10 to-transparent" />
       </div>
 
       {children}

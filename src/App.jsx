@@ -44,8 +44,7 @@ export default function App() {
     root.style.colorScheme = isDark ? "dark" : "light";
   }, [isDark]);
 
-  const cycleMode = () =>
-    setMode((m) => (m === "auto" ? "light" : m === "light" ? "dark" : "auto"));
+  const cycleMode = () => setMode(isDark ? "light" : "dark");
 
   // Back-to-top visibility
   const [showTop, setShowTop] = React.useState(false);
@@ -59,13 +58,13 @@ export default function App() {
   return (
     <div
       className={
-        "min-h-screen font-sans antialiased selection:bg-sky-500/30 " +
-        (isDark ? "bg-[#04050d] text-slate-100" : "bg-slate-50 text-slate-900")
+        "min-h-screen font-sans antialiased selection:bg-amber-500/20 " +
+        (isDark ? "bg-[#0d0900] text-slate-100" : "bg-amber-50 text-slate-900")
       }
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-sky-400/60 focus:px-3 focus:py-2 focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-amber-400/60 focus:px-3 focus:py-2 focus:outline-none"
       >
         Skip to content
       </a>
@@ -81,15 +80,6 @@ export default function App() {
         <div
           className="orb-indigo absolute -bottom-1/4 -right-1/4 h-[60vh] w-[60vh] rounded-full opacity-50"
           style={{ animation: "orb-drift 22s ease-in-out infinite reverse" }}
-        />
-        {/* Scan line overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(0deg, rgba(56,189,248,1) 0px, rgba(56,189,248,1) 1px, transparent 1px, transparent 3px)",
-            backgroundSize: "100% 3px",
-          }}
         />
       </div>
 
