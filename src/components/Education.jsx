@@ -19,19 +19,19 @@ export default function Education({ education }) {
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-amber-400/10 border border-amber-400/20">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-rose-400/10 border border-rose-400/20">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="#fcd34d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z" stroke="#fcd34d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M20 9v6" stroke="#fcd34d" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="#fb7185" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z" stroke="#fb7185" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M20 9v6" stroke="#fb7185" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
                 <div>
                   <h3 className="text-base font-semibold dark:text-white text-slate-900">{e.school}</h3>
-                  <p className="mt-0.5 text-sm text-amber-400/80">{e.degree}</p>
+                  <p className="mt-0.5 text-sm text-rose-400/80">{e.degree}</p>
                 </div>
               </div>
-              <span className="flex-shrink-0 rounded-full border border-amber-400/15 bg-amber-400/5 px-2.5 py-0.5 font-mono-tech text-xs text-slate-400">
+              <span className="flex-shrink-0 rounded-full border border-rose-400/15 bg-rose-400/5 px-2.5 py-0.5 font-mono-tech text-xs text-slate-400">
                 {e.period}
               </span>
             </div>
@@ -40,7 +40,7 @@ export default function Education({ education }) {
               <ul className="mt-4 space-y-1.5">
                 {e.notes.map((n, j) => (
                   <li key={j} className="flex items-start gap-2.5 text-sm dark:text-slate-400 text-slate-600">
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400/60" />
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-rose-400/60" />
                     {n}
                   </li>
                 ))}

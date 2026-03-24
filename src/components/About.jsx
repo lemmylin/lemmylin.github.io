@@ -14,7 +14,7 @@ const CARD_DATA = [
     getData: () => aboutExtras?.values || [],
     renderItem: (v) => (
       <li key={v} className="flex items-start gap-2.5 text-sm dark:text-slate-400 text-slate-600">
-        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400/70" />
+        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-sky-400/70" />
         {v}
       </li>
     ),
@@ -42,7 +42,7 @@ const CARD_DATA = [
     getData: () => aboutExtras?.fun_facts || [],
     renderItem: (f) => (
       <li key={f} className="flex items-start gap-2.5 text-sm dark:text-slate-400 text-slate-600">
-        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-teal-400/70" />
+        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400/70" />
         {f}
       </li>
     ),
@@ -66,8 +66,8 @@ export default function About() {
         >
           <div className="glass-card rounded-xl p-6 h-full">
             <div className="flex items-center gap-2 mb-4">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(252,211,77,0.8)]" />
-              <span className="font-mono-tech text-xs text-amber-400/80">bio.txt</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_6px_rgba(56,189,248,0.8)]" />
+              <span className="font-mono-tech text-xs text-sky-400/80">bio.txt</span>
             </div>
             <div className="space-y-3">
               {(aboutExtras?.intro || []).map((p, i) => (
@@ -96,12 +96,12 @@ export default function About() {
               >
                 {/* Card header */}
                 <div className="flex items-center gap-2.5 mb-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-amber-400/10 border border-amber-400/20">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-sky-400/10 border border-sky-400/20">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       {card.icon}
                     </svg>
                   </div>
-                  <h3 className="text-xs font-semibold text-amber-400 font-mono-tech uppercase tracking-wider">
+                  <h3 className="text-xs font-semibold text-sky-400 font-mono-tech uppercase tracking-wider">
                     {card.title}
                   </h3>
                 </div>

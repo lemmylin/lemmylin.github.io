@@ -44,12 +44,12 @@ export default function Skills({ skills }) {
           >
             {/* Category header */}
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-amber-400/10 border border-amber-400/20">
+              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-400/10 border border-cyan-400/20">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   {CATEGORY_ICONS[cat] || CATEGORY_ICONS.Tools}
                 </svg>
               </div>
-              <h4 className="text-sm font-semibold text-amber-400 font-mono-tech">
+              <h4 className="text-sm font-semibold text-cyan-400 font-mono-tech">
                 {cat.replaceAll("_", " / ")}
               </h4>
             </div>

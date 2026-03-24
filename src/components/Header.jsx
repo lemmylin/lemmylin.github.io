@@ -97,8 +97,8 @@ export default function Header({ isDark, mode, cycleMode }) {
           className="group flex items-center gap-2.5"
         >
           <Logo size={32} />
-          <span className="text-sm font-bold dark:text-slate-200 text-slate-800 dark:group-hover:text-amber-400 group-hover:text-amber-600 transition-colors hidden sm:block">
-            Lemmy <span className="text-amber-400">Lin</span>
+          <span className="text-sm font-bold dark:text-slate-200 text-slate-800 dark:group-hover:text-violet-400 group-hover:text-violet-600 transition-colors hidden sm:block">
+            Lemmy <span className="text-violet-400">Lin</span>
           </span>
         </a>
 
@@ -124,7 +124,7 @@ export default function Header({ isDark, mode, cycleMode }) {
               onClick={cycleMode}
               aria-label={`Theme: ${mode}`}
               title={`Theme: ${mode}`}
-              className="h-8 w-8 flex items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/5 text-slate-400 hover:text-amber-400 hover:border-amber-400/40 transition-all duration-200"
+              className="h-8 w-8 flex items-center justify-center rounded-lg border border-violet-400/20 bg-violet-400/5 text-slate-400 hover:text-violet-400 hover:border-violet-400/40 transition-all duration-200"
             >
               <ModeIcon />
             </button>
@@ -136,7 +136,7 @@ export default function Header({ isDark, mode, cycleMode }) {
           <button
             onClick={cycleMode}
             aria-label={`Theme: ${mode}`}
-            className="h-8 w-8 flex items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/5 text-slate-400"
+            className="h-8 w-8 flex items-center justify-center rounded-lg border border-violet-400/20 bg-violet-400/5 text-slate-400"
           >
             <ModeIcon />
           </button>
@@ -145,7 +145,7 @@ export default function Header({ isDark, mode, cycleMode }) {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             ref={btnRef}
-            className="h-8 w-8 flex items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/5 text-slate-400 hover:text-amber-400 transition-colors"
+            className="h-8 w-8 flex items-center justify-center rounded-lg border border-violet-400/20 bg-violet-400/5 text-slate-400 hover:text-violet-400 transition-colors"
           >
             {menuOpen ? (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -164,7 +164,7 @@ export default function Header({ isDark, mode, cycleMode }) {
           <div
             id="mobile-menu"
             ref={panelRef}
-            className="absolute right-4 top-[calc(100%+8px)] z-50 w-56 overflow-hidden rounded-xl border dark:border-amber-400/15 border-slate-200 dark:bg-[#160f02]/95 bg-white/95 shadow-2xl dark:shadow-black/50 shadow-black/10 backdrop-blur-xl md:hidden"
+            className="absolute right-4 top-[calc(100%+8px)] z-50 w-56 overflow-hidden rounded-xl border dark:border-violet-400/15 border-slate-200 dark:bg-[#0e0e1a]/95 bg-white/95 shadow-2xl dark:shadow-black/50 shadow-black/10 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col p-2 gap-0.5">
               {NAV_LINKS.map(({ href, label }) => (
@@ -177,7 +177,7 @@ export default function Header({ isDark, mode, cycleMode }) {
                   {label}
                 </a>
               ))}
-              <div className="my-1 border-t border-amber-400/10" />
+              <div className="my-1 border-t border-violet-400/10" />
               <a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}

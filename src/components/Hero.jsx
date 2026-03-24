@@ -56,7 +56,7 @@ function SocialLink({ href, label, icon: Icon }) {
       rel="noreferrer"
       aria-label={label}
       title={label}
-      className="group flex h-9 w-9 items-center justify-center rounded-full border dark:border-amber-400/25 border-amber-300/60 dark:bg-amber-400/5 bg-white/60 dark:text-slate-400 text-slate-600 transition-all duration-200 dark:hover:border-amber-400/60 hover:border-amber-400 dark:hover:bg-amber-400/10 hover:bg-amber-50 dark:hover:text-amber-400 hover:text-amber-600"
+      className="group flex h-9 w-9 items-center justify-center rounded-full border dark:border-violet-400/25 border-violet-300/60 dark:bg-violet-400/5 bg-white/60 dark:text-slate-400 text-slate-600 transition-all duration-200 dark:hover:border-violet-400/60 hover:border-violet-400 dark:hover:bg-violet-400/10 hover:bg-violet-50 dark:hover:text-violet-400 hover:text-violet-600"
     >
       <Icon width={16} height={16} />
     </a>
@@ -87,17 +87,17 @@ export default function Hero({ profile }) {
           {/* Right-edge gradient blend into background (desktop) */}
           <div
             className="absolute inset-0 hidden lg:block"
-            style={{ background: "linear-gradient(to right, transparent 65%, rgba(13,9,0,0.85) 100%)" }}
+            style={{ background: "linear-gradient(to right, transparent 65%, rgba(11,11,19,0.85) 100%)" }}
           />
           {/* Bottom gradient (mobile) */}
           <div
             className="absolute inset-0 lg:hidden"
-            style={{ background: "linear-gradient(to bottom, transparent 55%, rgba(13,9,0,0.92) 100%)" }}
+            style={{ background: "linear-gradient(to bottom, transparent 55%, rgba(11,11,19,0.92) 100%)" }}
           />
-          {/* Subtle amber accent strip on right edge */}
+          {/* Subtle violet accent strip on right edge */}
           <div
             className="absolute right-0 top-0 bottom-0 w-px hidden lg:block"
-            style={{ background: "linear-gradient(to bottom, transparent, rgba(252,211,77,0.4), transparent)" }}
+            style={{ background: "linear-gradient(to bottom, transparent, rgba(167,139,250,0.4), transparent)" }}
           />
         </motion.div>
 
@@ -109,17 +109,17 @@ export default function Hero({ profile }) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
         >
           {/* Available badge */}
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border dark:border-amber-400/25 border-amber-300/60 dark:bg-amber-400/5 bg-amber-50 px-3.5 py-1.5 text-xs font-mono-tech dark:text-amber-400 text-amber-700">
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border dark:border-violet-400/25 border-violet-300/60 dark:bg-violet-400/5 bg-violet-50 px-3.5 py-1.5 text-xs font-mono-tech dark:text-violet-400 text-violet-700">
             <span
-              className="h-1.5 w-1.5 rounded-full bg-amber-400"
-              style={{ animation: "pulse-glow 2s ease-in-out infinite", boxShadow: "0 0 6px rgba(252,211,77,0.8)" }}
+              className="h-1.5 w-1.5 rounded-full bg-violet-400"
+              style={{ animation: "pulse-glow 2s ease-in-out infinite", boxShadow: "0 0 6px rgba(167,139,250,0.8)" }}
             />
             Available for opportunities
           </div>
 
           {/* Name */}
           <h1 className="text-5xl font-black tracking-tight leading-none sm:text-6xl lg:text-7xl">
-            <span className="gradient-text-cyan text-glow-subtle">{firstName}</span>
+            <span className="gradient-text-hero text-glow-violet">{firstName}</span>
             <br />
             <span className="dark:text-white text-slate-900">{lastName}</span>
           </h1>
@@ -136,7 +136,7 @@ export default function Hero({ profile }) {
 
           {/* Location + social links */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 rounded-full border dark:border-slate-700/80 border-amber-200 dark:bg-slate-800/40 bg-white/70 px-3 py-1 text-xs dark:text-slate-400 text-slate-600">
+            <span className="inline-flex items-center gap-1.5 rounded-full border dark:border-slate-700/80 border-violet-200 dark:bg-slate-800/40 bg-white/70 px-3 py-1 text-xs dark:text-slate-400 text-slate-600">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" />
               </svg>
@@ -174,13 +174,21 @@ export default function Hero({ profile }) {
           </div>
 
           {/* Stats — inline, clean */}
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t dark:border-amber-400/10 border-amber-200/50 pt-6">
-            {STATS.map(({ value, label }) => (
-              <div key={label} className="flex items-baseline gap-1.5">
-                <span className="font-mono-tech text-2xl font-bold text-amber-400">{value}</span>
-                <span className="text-xs dark:text-slate-500 text-slate-500">{label}</span>
-              </div>
-            ))}
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t dark:border-violet-400/10 border-violet-200/40 pt-6">
+            {STATS.map(({ value, label }) => {
+              const colorMap = {
+                "Years Exp": "text-violet-400",
+                "Jira Tickets": "text-sky-400",
+                "Defects": "text-emerald-400",
+                "OEM Programs": "text-pink-400",
+              };
+              return (
+                <div key={label} className="flex items-baseline gap-1.5">
+                  <span className={`font-mono-tech text-2xl font-bold ${colorMap[label] || "text-violet-400"}`}>{value}</span>
+                  <span className="text-xs dark:text-slate-500 text-slate-500">{label}</span>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

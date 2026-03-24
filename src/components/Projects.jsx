@@ -43,23 +43,23 @@ function ProjectCard({ project, index, prefersReduced }) {
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"
         style={{
-          background: `radial-gradient(200px circle at ${glowPos.x}% ${glowPos.y}%, rgba(252,211,77,0.08), transparent 70%)`,
+          background: `radial-gradient(200px circle at ${glowPos.x}% ${glowPos.y}%, rgba(52,211,153,0.08), transparent 70%)`,
         }}
       />
 
       {/* Top accent line */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <div className="relative p-6">
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-400/10 border border-amber-400/20">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 border border-emerald-400/20">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" stroke="#fcd34d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <h3 className="text-sm font-semibold dark:text-white text-slate-900 leading-snug group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">
+            <h3 className="text-sm font-semibold dark:text-white text-slate-900 leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
               {project.name}
             </h3>
           </div>
@@ -69,7 +69,7 @@ function ProjectCard({ project, index, prefersReduced }) {
               target="_blank"
               rel="noreferrer"
               aria-label={`Open ${project.name}`}
-              className="flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-lg text-slate-600 hover:text-sky-400 hover:bg-amber-400/10 transition-all duration-200"
+              className="flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-lg text-slate-600 hover:text-emerald-400 hover:bg-emerald-400/10 transition-all duration-200"
             >
               <IconExternal width={14} height={14} />
             </a>
@@ -83,7 +83,7 @@ function ProjectCard({ project, index, prefersReduced }) {
         <ul className="mt-3 space-y-1.5">
           {project.highlights.map((h) => (
             <li key={h} className="flex gap-2.5 text-xs dark:text-slate-500 text-slate-600">
-              <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-amber-400/50" />
+              <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-emerald-400/50" />
               {h}
             </li>
           ))}
