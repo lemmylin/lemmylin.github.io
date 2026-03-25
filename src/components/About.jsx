@@ -1,126 +1,89 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import Section from "./Section.jsx";
 import aboutExtras from "../data/aboutExtras.js";
 
-const CARD_DATA = [
-  {
-    key: "values",
-    title: "Values",
-    icon: (
-      <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"
-    />
-    ),
-    getData: () => aboutExtras?.values || [],
-    renderItem: (v) => (
-      <li key={v} className="flex items-start gap-2.5 text-sm dark:text-slate-400 text-slate-600">
-        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-sky-400/70" />
-        {v}
-      </li>
-    ),
-    listClass: "space-y-2",
-  },
-  {
-    key: "hobbies",
-    title: "Hobbies",
-    icon: (
-      <path d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    ),
-    getData: () => aboutExtras?.hobbies || [],
-    renderItem: (h) => (
-      <span key={h} className="tech-badge">{h}</span>
-    ),
-    listClass: "flex flex-wrap gap-1.5",
-    isFlex: true,
-  },
-  {
-    key: "fun",
-    title: "Fun Facts",
-    icon: (
-      <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    ),
-    getData: () => aboutExtras?.fun_facts || [],
-    renderItem: (f) => (
-      <li key={f} className="flex items-start gap-2.5 text-sm dark:text-slate-400 text-slate-600">
-        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400/70" />
-        {f}
-      </li>
-    ),
-    listClass: "space-y-2",
-  },
-];
+const ease = [0, 0, 0.2, 1];
 
 export default function About() {
-  const prefersReduced = useReducedMotion();
+  const pref = useReducedMotion();
+  const anim = (delay = 0) =>
+    pref ? {} : {
+      initial:    { opacity: 0, y: 14 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport:   { once: true, margin: "-8% 0px" },
+      transition: { duration: 0.35, delay, ease },
+    };
 
   return (
-    <Section id="about" title="About">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
-        {/* Bio — wider column */}
-        <motion.div
-          className="lg:col-span-3"
-          initial={prefersReduced ? false : { opacity: 0, y: 16 }}
-          whileInView={prefersReduced ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="glass-card rounded-xl p-6 h-full">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_6px_rgba(56,189,248,0.8)]" />
-              <span className="font-mono-tech text-xs text-sky-400/80">bio.txt</span>
-            </div>
-            <div className="space-y-3">
-              {(aboutExtras?.intro || []).map((p, i) => (
-                <p key={i} className="text-sm leading-relaxed dark:text-slate-300 text-slate-700">{p}</p>
-              ))}
-              {aboutExtras?.bio && (
-                <p className="text-sm leading-relaxed dark:text-slate-400 text-slate-600">{aboutExtras.bio}</p>
-              )}
-            </div>
+    <section id="about" className="border-b-4 border-black">
+
+      {/* Section header */}
+      <SectionHeader num="01" title="About" />
+
+      {/* Content */}
+      <div className="swiss-wrap py-12 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+
+          {/* Bio text */}
+          <motion.div className="lg:col-span-3" {...anim(0)}>
+            <p className="text-xl md:text-2xl font-semibold leading-relaxed text-black mb-6">
+              {aboutExtras.intro[0]}
+            </p>
+            <p className="text-base text-gray-600 leading-relaxed">
+              {aboutExtras.bio}
+            </p>
+          </motion.div>
+
+          {/* Right: values, hobbies, facts */}
+          <div className="lg:col-span-2 space-y-8">
+            <motion.div {...anim(0.08)}>
+              <p className="swiss-label text-[#ff3000] mb-3">Values</p>
+              <ul className="space-y-3">
+                {aboutExtras.values.map((v, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-700 leading-relaxed">
+                    <span className="text-[#ff3000] font-bold flex-shrink-0">—</span>
+                    {v}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div {...anim(0.14)} className="border-t-2 border-black pt-8">
+              <p className="swiss-label text-[#ff3000] mb-3">Outside Work</p>
+              <div className="flex flex-wrap gap-1.5">
+                {aboutExtras.hobbies.map((h, i) => (
+                  <span key={i} className="tag">{h}</span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div {...anim(0.2)} className="border-t-2 border-black pt-8">
+              <p className="swiss-label text-[#ff3000] mb-3">Quick Facts</p>
+              <ul className="space-y-2">
+                {aboutExtras.fun_facts.map((f, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-700 leading-relaxed">
+                    <span className="text-[#ff3000] font-bold flex-shrink-0">—</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
-        </motion.div>
-
-        {/* Side cards */}
-        <div className="lg:col-span-2 flex flex-col gap-4">
-          {CARD_DATA.map((card, i) => {
-            const items = card.getData();
-            if (!items.length) return null;
-            return (
-              <motion.div
-                key={card.key}
-                className="glass-card glass-card-hover shimmer rounded-xl p-5"
-                initial={prefersReduced ? false : { opacity: 0, x: 16 }}
-                whileInView={prefersReduced ? {} : { opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {/* Card header */}
-                <div className="flex items-center gap-2.5 mb-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-sky-400/10 border border-sky-400/20">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      {card.icon}
-                    </svg>
-                  </div>
-                  <h3 className="text-xs font-semibold text-sky-400 font-mono-tech uppercase tracking-wider">
-                    {card.title}
-                  </h3>
-                </div>
-
-                {/* Items */}
-                {card.isFlex ? (
-                  <div className={card.listClass}>
-                    {items.map(card.renderItem)}
-                  </div>
-                ) : (
-                  <ul className={card.listClass}>
-                    {items.map(card.renderItem)}
-                  </ul>
-                )}
-              </motion.div>
-            );
-          })}
         </div>
       </div>
-    </Section>
+    </section>
+  );
+}
+
+/* Shared section header used across components */
+export function SectionHeader({ num, title }) {
+  return (
+    <div className="border-b-2 border-black bg-[#f2f2f2] swiss-diagonal">
+      <div className="swiss-wrap py-5 flex items-center gap-4">
+        <span className="font-black text-[#ff3000] text-sm tabular-nums">{num}</span>
+        <span className="w-4 h-px bg-black flex-shrink-0" aria-hidden="true" />
+        <h2 className="font-black uppercase tracking-widest text-xs">{title}</h2>
+      </div>
+    </div>
   );
 }

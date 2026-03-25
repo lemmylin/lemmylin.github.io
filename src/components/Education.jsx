@@ -1,54 +1,56 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import Section from "./Section.jsx";
+import { SectionHeader } from "./About.jsx";
+
+const ease = [0, 0, 0.2, 1];
 
 export default function Education({ education }) {
-  const prefersReduced = useReducedMotion();
+  const pref = useReducedMotion();
 
   return (
-    <Section id="education" title="Education">
-      <div className="grid gap-4">
-        {education.map((e, i) => (
+    <section id="education" className="border-b-4 border-black">
+      <SectionHeader num="05" title="Education" />
+
+      <div className="swiss-wrap py-12 md:py-16">
+        {education.map((e) => (
           <motion.div
             key={e.school}
-            className="glass-card glass-card-hover shimmer rounded-xl p-6"
-            initial={prefersReduced ? false : { opacity: 0, y: 16 }}
-            whileInView={prefersReduced ? {} : { opacity: 1, y: 0 }}
+            initial={pref ? false : { opacity: 0, y: 14 }}
+            whileInView={pref ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35, ease }}
+            className="border-4 border-black"
           >
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-rose-400/10 border border-rose-400/20">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="#fb7185" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z" stroke="#fb7185" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M20 9v6" stroke="#fb7185" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold dark:text-white text-slate-900">{e.school}</h3>
-                  <p className="mt-0.5 text-sm text-rose-400/80">{e.degree}</p>
-                </div>
-              </div>
-              <span className="flex-shrink-0 rounded-full border border-rose-400/15 bg-rose-400/5 px-2.5 py-0.5 font-mono-tech text-xs text-slate-400">
-                {e.period}
-              </span>
-            </div>
+            {/* Swiss Red top bar */}
+            <div className="h-2 bg-[#ff3000]" aria-hidden="true" />
 
-            {e.notes?.length > 0 && (
-              <ul className="mt-4 space-y-1.5">
-                {e.notes.map((n, j) => (
-                  <li key={j} className="flex items-start gap-2.5 text-sm dark:text-slate-400 text-slate-600">
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-rose-400/60" />
-                    {n}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-3">
+              {/* Left: school name + degree */}
+              <div className="md:col-span-2 p-8 border-b-2 md:border-b-0 md:border-r-2 border-black">
+                <h3 className="font-black uppercase tracking-tight text-2xl md:text-3xl leading-tight mb-3">
+                  {e.school}
+                </h3>
+                <p className="text-base font-semibold text-gray-700">{e.degree}</p>
+              </div>
+
+              {/* Right: period + notes — dot texture */}
+              <div className="p-8 bg-[#f2f2f2] swiss-dots flex flex-col gap-4">
+                <div className="swiss-label text-[#ff3000]">{e.period}</div>
+                {e.notes?.length > 0 && (
+                  <ul className="space-y-2">
+                    {e.notes.map((n, j) => (
+                      <li key={j} className="flex gap-2.5 text-xs text-gray-700 leading-relaxed">
+                        <span className="text-[#ff3000] font-bold flex-shrink-0">—</span>
+                        {n}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { styles } from "./ui/classnames.js";
 import profile from "./data/profile.js";
 import experience from "./data/experience.js";
 import projects from "./data/projects.js";
@@ -16,98 +15,50 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 
 export default function App() {
-  // Theme: auto | light | dark
-  const [mode, setMode] = React.useState(() =>
-    localStorage.getItem("theme") || "auto"
-  );
-  const [systemDark, setSystemDark] = React.useState(() =>
-    typeof window !== "undefined" && window.matchMedia
-      ? window.matchMedia("(prefers-color-scheme: dark)").matches
-      : true
-  );
-  React.useEffect(() => {
-    try { localStorage.setItem("theme", mode); } catch {}
-  }, [mode]);
-  React.useEffect(() => {
-    if (!window.matchMedia) return;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = (e) => setSystemDark(e.matches);
-    mq.addEventListener?.("change", onChange) || mq.addListener?.(onChange);
-    return () => {
-      mq.removeEventListener?.("change", onChange) || mq.removeListener?.(onChange);
-    };
-  }, []);
-  const isDark = mode === "dark" || (mode === "auto" && systemDark);
-  React.useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark", isDark);
-    root.style.colorScheme = isDark ? "dark" : "light";
-  }, [isDark]);
-
-  const cycleMode = () => setMode(isDark ? "light" : "dark");
-
-  // Back-to-top visibility
   const [showTop, setShowTop] = React.useState(false);
+
   React.useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 400);
-    onScroll();
+    const onScroll = () => setShowTop(window.scrollY > 600);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <div
-      className={
-        "min-h-screen font-sans antialiased selection:bg-violet-500/20 " +
-        (isDark ? "bg-[#0b0b13] text-slate-100" : "bg-slate-50 text-slate-900")
-      }
-    >
+    <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-violet-400/60 focus:px-3 focus:py-2 focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-0 focus:top-0 focus:z-[200] focus:bg-[#ff3000] focus:text-white focus:px-6 focus:py-3 focus:font-bold focus:uppercase focus:tracking-widest focus:outline-none"
       >
         Skip to content
       </a>
 
-      {/* Background: animated dot grid + glowing orbs */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-dot-grid" />
-        {/* Animated orbs */}
-        <div
-          className="orb-cyan absolute -top-1/4 -left-1/4 h-[70vh] w-[70vh] rounded-full opacity-50"
-          style={{ animation: "orb-drift 18s ease-in-out infinite" }}
-        />
-        <div
-          className="orb-indigo absolute -bottom-1/4 -right-1/4 h-[60vh] w-[60vh] rounded-full opacity-40"
-          style={{ animation: "orb-drift 22s ease-in-out infinite reverse" }}
-        />
-      </div>
+      <Header />
 
-      <Header isDark={isDark} mode={mode} cycleMode={cycleMode} />
-
-      <main id="main">
-        <Hero profile={profile} isDark={isDark} />
-        <About isDark={isDark} />
-        <Experience experience={experience} isDark={isDark} />
-        <Projects projects={projects} isDark={isDark} />
-        <Skills skills={skills} isDark={isDark} />
-        <Education education={education} isDark={isDark} />
-        <Contact profile={profile} isDark={isDark} />
+      <main id="main" className="swiss-noise">
+        <Hero profile={profile} />
+        <About />
+        <Experience experience={experience} />
+        <Projects projects={projects} />
+        <Skills skills={skills} />
+        <Education education={education} />
+        <Contact profile={profile} />
       </main>
 
-      <Footer profile={profile} isDark={isDark} />
+      <Footer profile={profile} />
 
-      {/* Back to Top */}
+      {/* Back to top */}
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={styles.backToTop(showTop)}
+        className={`fixed bottom-6 right-6 z-40 w-10 h-10 flex items-center justify-center bg-black text-white border-2 border-black transition-all duration-150 hover:bg-[#ff3000] hover:border-[#ff3000] ${
+          showTop ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter" />
         </svg>
       </button>
-    </div>
+    </>
   );
 }

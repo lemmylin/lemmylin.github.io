@@ -1,114 +1,84 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import Section from "./Section.jsx";
-import { IconExternal } from "../ui/icons.jsx";
+import { SectionHeader } from "./About.jsx";
 
-function ProjectCard({ project, index, prefersReduced }) {
-  const cardRef = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
-
-  const handleMouseMove = (e) => {
-    if (prefersReduced || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    setTilt({ x: (py - 0.5) * -10, y: (px - 0.5) * 10 });
-    setGlowPos({ x: px * 100, y: py * 100 });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-    setGlowPos({ x: 50, y: 50 });
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: prefersReduced
-          ? undefined
-          : `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: tilt.x === 0 && tilt.y === 0 ? "transform 0.5s ease" : "transform 0.1s ease",
-      }}
-      initial={prefersReduced ? false : { opacity: 0, y: 20 }}
-      whileInView={prefersReduced ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className="relative glass-card rounded-xl overflow-hidden group"
-    >
-      {/* Mouse follow glow */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"
-        style={{
-          background: `radial-gradient(200px circle at ${glowPos.x}% ${glowPos.y}%, rgba(52,211,153,0.08), transparent 70%)`,
-        }}
-      />
-
-      {/* Top accent line */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-      <div className="relative p-6">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 border border-emerald-400/20">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <h3 className="text-sm font-semibold dark:text-white text-slate-900 leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-              {project.name}
-            </h3>
-          </div>
-          {project.href && (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Open ${project.name}`}
-              className="flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-lg text-slate-600 hover:text-emerald-400 hover:bg-emerald-400/10 transition-all duration-200"
-            >
-              <IconExternal width={14} height={14} />
-            </a>
-          )}
-        </div>
-
-        {/* Description */}
-        <p className="mt-3 text-sm leading-relaxed dark:text-slate-400 text-slate-600">{project.description}</p>
-
-        {/* Highlights */}
-        <ul className="mt-3 space-y-1.5">
-          {project.highlights.map((h) => (
-            <li key={h} className="flex gap-2.5 text-xs dark:text-slate-500 text-slate-600">
-              <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-emerald-400/50" />
-              {h}
-            </li>
-          ))}
-        </ul>
-
-        {/* Stack badges */}
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.stack.map((s) => (
-            <span key={s} className="tech-badge">{s}</span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+const ease = [0, 0, 0.2, 1];
 
 export default function Projects({ projects }) {
-  const prefersReduced = useReducedMotion();
+  const pref = useReducedMotion();
+
   return (
-    <Section id="projects" title="Projects">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <section id="projects" className="border-b-4 border-black">
+      <SectionHeader num="03" title="Projects" />
+
+      {/* 2-col grid — cards invert to black on hover */}
+      <div className="grid grid-cols-1 md:grid-cols-2">
         {projects.map((p, i) => (
-          <ProjectCard key={p.name} project={p} index={i} prefersReduced={prefersReduced} />
+          <motion.article
+            key={p.name}
+            initial={pref ? false : { opacity: 0, y: 16 }}
+            whileInView={pref ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-8% 0px" }}
+            transition={{ duration: 0.35, delay: (i % 2) * 0.07, ease }}
+            className={`group border-b-2 border-black hover:bg-black hover:text-white transition-colors duration-200 ${
+              i % 2 === 0 ? "md:border-r-2 md:border-black" : ""
+            }`}
+          >
+            <div className="p-6 md:p-8 h-full flex flex-col">
+              {/* Top: number + external link */}
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <span className="font-black text-[#ff3000] text-sm tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {p.href && (
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open ${p.name} (external)`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-gray-400 hover:text-[#ff3000] transition-colors duration-150 font-bold"
+                  >
+                    ↗
+                  </a>
+                )}
+              </div>
+
+              {/* Name */}
+              <h3 className="font-black uppercase tracking-tight text-lg leading-tight mb-3 transition-colors duration-200">
+                {p.name}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-gray-600 group-hover:text-gray-300 leading-relaxed mb-4 flex-1 transition-colors duration-200">
+                {p.description}
+              </p>
+
+              {/* Highlights */}
+              <ul className="space-y-1 mb-5">
+                {p.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2 text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
+                    <span className="text-[#ff3000] flex-shrink-0">—</span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Stack tags */}
+              <div className="flex flex-wrap gap-1.5">
+                {p.stack.map((s) => (
+                  <span
+                    key={s}
+                    className="px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-widest border border-current opacity-50 group-hover:opacity-75 transition-opacity duration-200"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.article>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }
