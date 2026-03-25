@@ -4,12 +4,12 @@ const experience = [
     role: "Embedded Software Engineer",
     period: "May 2023 — Present",
     bullets: [
-      "TACM (Geely/Volvo): Led day-to-day with TCS (100+ stand-ups) & weekly China syncs; closed 200+ Jira items and 74 SVN commits across 36 branches while protecting budget/avoiding idle billing.",
+      "Transmission Control Module (Geely/Volvo): Led day-to-day with TCS (100+ stand-ups) & weekly China syncs; closed 200+ Jira items and 74 SVN commits across 36 branches while protecting budget/avoiding idle billing.",
       "Park lock actuator (Geely/Volvo): Delivered AUTOSAR app integration, MCAL updates, and bootloader support for S32K311; supported calibration & production-quality integration.",
-      "DUCA (Chevy Corvette): Integrated DUCA motor-control algorithm into PLA—improved shift time/overshoot with zero major integration errors; supported GM screening and maintained troubleshooting docs.",
+      "Motor-control module (Chevy Corvette): Integrated motor-control algorithm into park lock actuator—improved shift time/overshoot with zero major integration errors; supported GM screening and maintained troubleshooting docs.",
       "Automation: Python + CAN scripts for flashing, log parsing, and test execution—reduced validation cycle time and streamlined bench testing.",
       "Collaboration: Aligned HW/Systems/SW across U.S., China, and India (TCS/KPIT) with 1‑day turnaround on blockers; maintained on-time milestones with zero customer-visible defects.",
-      "Key projects: TACM application layer rewrite; DUCA screening and reuse; PLA motor-control integration & calibration; Motion sensor development (ISO 16844‑3).",
+      "Key projects: Transmission control module application layer rewrite; motor-control algorithm screening and reuse; park lock actuator integration & calibration; Motion sensor development (ISO 16844‑3).",
     ],
     tags: [
       "C/C++",

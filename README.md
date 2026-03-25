@@ -24,31 +24,31 @@ Live site: **https://lemmylin.github.io/**
 ```
 lemmylin.github.io/
 ├── public/
+│   ├── profile.png             # Headshot used in Hero section
 │   └── Resume.pdf              # Downloadable résumé
 ├── src/
 │   ├── main.jsx                # React entry point (mounts App into #root)
 │   ├── index.css               # Global styles, design tokens, Tailwind base
-│   ├── App.jsx                 # App shell: theme state, layout, back-to-top
+│   ├── App.jsx                 # App shell: layout, back-to-top button
 │   ├── components/
-│   │   ├── Header.jsx          # Fixed nav bar, scroll detection, active section, mobile menu
+│   │   ├── Header.jsx          # Fixed nav bar, scroll border, active section, mobile menu
 │   │   ├── Hero.jsx            # Full-screen split-photo hero with typewriter + stats
-│   │   ├── About.jsx           # Bio, values, hobbies, fun facts cards
-│   │   ├── Experience.jsx      # 3-column timeline (date | dot | card)
-│   │   ├── Projects.jsx        # Project cards with mouse-follow tilt glow
-│   │   ├── Skills.jsx          # Skill category cards with tech badges
+│   │   ├── About.jsx           # Bio, values, hobbies, fun facts
+│   │   ├── Experience.jsx      # Timeline layout (date | dot | card)
+│   │   ├── Projects.jsx        # Project cards grid
+│   │   ├── Skills.jsx          # Skill category cards with tech tags
 │   │   ├── Education.jsx       # Education cards
 │   │   ├── Contact.jsx         # Contact CTA with email + résumé links
 │   │   ├── Footer.jsx          # Site footer with links
 │   │   └── Section.jsx         # Shared section wrapper (number label + heading + divider)
 │   ├── data/
-│   │   ├── profile.js          # Name, email, location, tagline, links, headshot URL
+│   │   ├── profile.js          # Name, email, location, tagline, summary, links, headshot URL
 │   │   ├── experience.js       # Work history: company, role, period, bullets, tags
 │   │   ├── projects.js         # Project list: name, description, highlights, stack, href
 │   │   ├── skills.js           # Skills grouped by category
 │   │   ├── education.js        # Education: school, degree, period, notes
 │   │   └── aboutExtras.js      # Bio intro, values, hobbies, fun facts
 │   └── ui/
-│       ├── Logo.jsx            # Custom SVG logo (circuit-trace LL mark on amber→teal chip)
 │       ├── classnames.js       # Shared CSS class builder utilities (cn, styles)
 │       └── icons.jsx           # Inline SVG icon components
 ├── index.html                  # Vite HTML entry, sets <title>
@@ -69,9 +69,9 @@ lemmylin.github.io/
 src/data/*.js  (static JS modules)
        │
        ▼
-   App.jsx  (theme state: mode / isDark)
+   App.jsx  (layout shell, back-to-top state)
        │
-       ├── Header.jsx      ← isDark, mode, cycleMode
+       ├── Header.jsx      (no props — reads NAV_LINKS internally)
        ├── Hero.jsx        ← profile
        ├── About.jsx       (reads aboutExtras directly)
        ├── Experience.jsx  ← experience[]
@@ -82,91 +82,57 @@ src/data/*.js  (static JS modules)
        └── Footer.jsx      ← profile
 ```
 
-### Theme System
-
-- State: `mode` ∈ `{ "light" | "dark" }` stored in `localStorage`
-- Effective dark: `isDark = mode === "dark" || (mode === "auto" && systemDark)`
-- Class toggle: `document.documentElement.classList.toggle("dark", isDark)`
-- Tailwind v4 dark variant enabled in `index.css`:
-  ```css
-  @variant dark (&:where(.dark, .dark *));
-  ```
-- Toggle: `cycleMode` immediately flips between light/dark based on current state
-
 ### Styling System
 
+The site uses a **Swiss International / Modernist** design: black and white with `#ff3000` red as the sole accent.
+
 - **Tailwind CSS v4** — imported via `@import "tailwindcss"` in `index.css`, no config file needed
-- **Design tokens** (CSS custom properties in `:root`):
-  - `--amber: 252 211 77` (amber-300)
-  - `--teal: 94 234 212` (teal-300)
-  - `--rose: 253 164 175` (rose-300)
-  - `--bg-base: 13 9 0` (warm near-black `#0d0900`)
-  - `--bg-card: 22 15 2` (warm dark card `#160f02`)
-- **Custom CSS classes** (in `index.css`):
-  - `.glass-card` — dark semi-transparent card with amber border
-  - `.glass-card-hover` — hover lift + glow transition
-  - `.shimmer` — subtle shimmer sweep on hover
-  - `.btn-primary` — amber→orange gradient CTA button
-  - `.btn-ghost` — amber-tinted outlined button
-  - `.tech-badge` — pill badge for tech stack tags
-  - `.gradient-text-cyan` — amber→teal→rose gradient text fill
-  - `.typewriter-cursor` — blinking cursor via `::after`
-  - `.timeline-line` — amber gradient vertical line
-  - `.bg-dot-grid` — dot grid + ambient glow background
-  - `.orb-cyan` / `.orb-indigo` — large ambient glow blobs
-- **Light mode overrides**: `:root:not(.dark)` selectors boost text contrast and adjust component backgrounds
+- **Base**: white background (`#ffffff`), black text (`#000000`), Inter font
+- **Accent**: `#ff3000` (red) used for hover states, active nav links, focus rings, and the back-to-top button
 
-### Shared Utilities (`src/ui/classnames.js`)
+**Custom CSS classes** (defined in `index.css`):
 
-```js
-cn(...parts)              // Filters falsy parts and joins with spaces
-styles.card()             // glass-card class string
-styles.primaryButton      // btn-primary class string
-styles.badge()            // tech-badge class string
-styles.navLink(active)    // Nav link with active amber highlight
-styles.navLinkMobile(active)
-styles.headerContainer(scrolled)  // Transparent until scroll, then glass blur
-styles.backToTop(show)    // Fixed bottom-right button with show/hide transition
-```
+| Class | Purpose |
+|---|---|
+| `.swiss-noise` | SVG noise overlay on `<main>` for subtle texture |
+| `.swiss-grid` | 24px line grid — hero backgrounds, feature areas |
+| `.swiss-dots` | 16px dot matrix — section headers, sidebars |
+| `.swiss-diagonal` | 45° diagonal lines — section label bars |
+| `.swiss-label` | 0.6rem bold uppercase with wide letter-spacing |
+| `.swiss-wrap` | Max-width 1440px container with responsive horizontal padding |
+| `.tag` | Small uppercase pill tag with black border; inverts on hover |
+| `.btn` | Base button: uppercase, bold, 3rem height, no border-radius |
+| `.btn-primary` | Black fill → red on hover |
+| `.btn-secondary` | Outlined black → filled black on hover |
 
 ---
 
 ## Component Reference
 
 ### `Header.jsx`
-- Fixed position, transparent until `scrollY > 40`, then applies glass blur
+- Fixed position, white background; bottom border appears (2px black) after `scrollY > 40`
 - Tracks active section via `IntersectionObserver` on all section IDs
-- Mobile: hamburger opens dropdown menu, closes on outside click / Escape
-- Theme toggle button cycles light ↔ dark
-- Logo: `<Logo size={32} />` + "Lemmy Lin" wordmark
+- Desktop: text logotype "LL" on left, nav links center, Résumé button right
+- Mobile: hamburger toggles dropdown menu; closes on outside click or Escape
+- No theme toggle — light mode only
 
 ### `Hero.jsx`
-- Full-viewport split layout: photo panel left (44% desktop) | content right (56%)
-- Photo: `h-[45vh]` mobile → `h-[52vh]` sm → full height desktop
-- Gradient overlays: right-edge blend (desktop), bottom fade (mobile)
-- Typewriter cycles through 4 role titles
-- Stats row: Years Exp, Jira Tickets, Defects, OEM Programs
+- Full-viewport split layout: photo panel left | content right
+- Typewriter cycles through role titles
+- Stats row below the tagline
 
 ### `Experience.jsx`
-- 3-column layout per entry: `[date col] [dot+line] [card]`
+- Timeline layout per entry: date column | connector dot | card
 - Date column hidden on mobile; date shown inline above card
-- Dates parsed by splitting on em-dash `—`
-- Connecting line uses inline gradient style (not `timeline-line` class)
 
 ### `Projects.jsx`
 - 2-column grid on sm+
-- Each card: mouse-follow radial glow + 3D tilt on hover (respects `prefers-reduced-motion`)
-- External link opens in new tab
+- Each card links out if `href` is set; otherwise no link button rendered
 
 ### `Section.jsx`
 - Shared wrapper for all content sections
-- Renders: `// XX` number label + uppercase heading + amber gradient divider line
-- Scroll-triggered fade-in animation via Framer Motion `whileInView`
-
-### `Logo.jsx`
-- Pure SVG, 36×36 viewBox, scalable via `size` prop
-- Design: two L-shapes (circuit traces) on amber→teal gradient chip background (rx=8)
-- Center solder joint dot where feet meet; top pin dots on each vertical
+- Renders: numbered label + uppercase heading + divider line
+- Scroll-triggered fade-in via Framer Motion `whileInView`
 
 ---
 
@@ -176,12 +142,13 @@ styles.backToTop(show)    // Fixed bottom-right button with show/hide transition
 ```js
 {
   name: string,
+  title: string,
   email: string,
   location: string,
   tagline: string,
   summary: string,
-  headshotUrl: string,      // can be relative path or full URL
-  links: [{ label: string, href: string }]  // LinkedIn, GitHub, Instagram, Email, Site
+  headshotUrl: string,      // relative path (e.g. "profile.png") or full URL
+  links: [{ label: string, href: string, external: boolean }]
 }
 ```
 
@@ -203,7 +170,7 @@ styles.backToTop(show)    // Fixed bottom-right button with show/hide transition
   description: string,
   highlights: string[],
   stack: string[],
-  href: string | null
+  href: string | null       // null hides the external link button
 }]
 ```
 
@@ -227,7 +194,7 @@ styles.backToTop(show)    // Fixed bottom-right button with show/hide transition
 ### `aboutExtras.js`
 ```js
 {
-  intro: string[],          // Lead paragraph(s) for bio card
+  intro: string[],          // Lead paragraph(s)
   bio: string,              // Secondary bio paragraph
   values: string[],
   hobbies: string[],
@@ -262,7 +229,7 @@ npm run preview   # Preview the built site locally
 ## Customization Guide
 
 ### Update personal info
-Edit `src/data/profile.js` — name, email, location, tagline, links, headshot.
+Edit `src/data/profile.js` — name, title, email, location, tagline, summary, links, headshot.
 
 ### Add/edit experience
 Edit `src/data/experience.js`. Period format: `"Mon YYYY — Mon YYYY"`. Use em-dash `—`.
@@ -270,14 +237,13 @@ Edit `src/data/experience.js`. Period format: `"Mon YYYY — Mon YYYY"`. Use em-
 ### Add projects
 Edit `src/data/projects.js`. Set `href: null` to hide the external link button.
 
-### Change accent color
-The amber palette is defined in `src/index.css` under design tokens and throughout component class names. The primary accent is `#fcd34d` (amber-300) with `#f59e0b` (amber-500) for buttons.
-
 ### Add a new section
-1. Create `src/components/MySection.jsx`, import and use `<Section id="my-section" title="My Section">`
-2. Add `{ href: "#my-section", label: "My Section" }` to `NAV_LINKS` in `Header.jsx`
+1. Create `src/components/MySection.jsx`, use `<Section id="my-section" title="My Section">`
+2. Add `{ href: "#my-section", label: "My Section" }` to the `NAV` array in `Header.jsx`
 3. Import and render `<MySection />` in `App.jsx`
-4. Add `"my-section"` to the `ids` array in `Header.jsx`'s active section tracker
+
+### Change the accent color
+Find and replace `#ff3000` across `src/index.css` and component files.
 
 ---
 

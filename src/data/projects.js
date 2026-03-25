@@ -1,6 +1,6 @@
 const projects = [
   {
-    name: "TACM App‑Layer Rewrite",
+    name: "Transmission Control Module App‑Layer Rewrite",
     description:
       "Re‑implemented the application layer for a transmission/axle control module to improve readability, testability, and long‑term maintenance after model sources were lost.",
     highlights: [
