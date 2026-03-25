@@ -5,7 +5,7 @@ const experience = [
     period: "May 2023 — Present",
     bullets: [
       "TACM (Geely/Volvo): Led day-to-day with TCS (100+ stand-ups) & weekly China syncs; closed 200+ Jira items and 74 SVN commits across 36 branches while protecting budget/avoiding idle billing.",
-      "PLA (Aisin PLA / SADP): Delivered AUTOSAR app integration, MCAL updates, and bootloader support for S32K311; supported calibration & production-quality integration.",
+      "Park lock actuator (Geely/Volvo): Delivered AUTOSAR app integration, MCAL updates, and bootloader support for S32K311; supported calibration & production-quality integration.",
       "DUCA (Chevy Corvette): Integrated DUCA motor-control algorithm into PLA—improved shift time/overshoot with zero major integration errors; supported GM screening and maintained troubleshooting docs.",
       "Automation: Python + CAN scripts for flashing, log parsing, and test execution—reduced validation cycle time and streamlined bench testing.",
       "Collaboration: Aligned HW/Systems/SW across U.S., China, and India (TCS/KPIT) with 1‑day turnaround on blockers; maintained on-time milestones with zero customer-visible defects.",

@@ -11,9 +11,9 @@ const projects = [
     stack: ["C", "CMake", "SVN", "Unit Tests"],
   },
   {
-    name: "PLA DUCA Integration",
+    name: "Park Lock Actuator Integration",
     description:
-      "Integrated DUCA motor‑control algorithm into PLA, plus screening and incremental improvements; coordinated verification with partners.",
+      "Integrated motor‑control algorithm into a park lock actuator program, plus screening and incremental improvements; coordinated verification with partners.",
     highlights: ["Shift time / overshoot improvements", "CAN diagnostics", "Algorithm reuse", "Calibration hooks"],
     stack: ["C", "AUTOSAR MCAL", "CAN tools"],
   },
