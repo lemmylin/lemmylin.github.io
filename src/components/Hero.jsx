@@ -1,228 +1,180 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { IconLinkedIn, IconGitHub, IconInstagram, IconEmail } from "../ui/icons.jsx";
-
-const ROLES = [
-  "Embedded Software Engineer",
-  "Automotive ECU Developer",
-  "AUTOSAR & CAN Specialist",
-  "Clean Code Advocate",
-];
 
 const STATS = [
-  { value: "2+", label: "Years Exp", color: "text-violet-400" },
-  { value: "200+", label: "Jira Tickets", color: "text-cyan-400" },
-  { value: "0", label: "Defects", color: "text-emerald-400" },
-  { value: "3", label: "OEM Programs", color: "text-pink-400" },
+  { num: "2+",   label: "Years Exp" },
+  { num: "200+", label: "Tickets Closed" },
+  { num: "0",    label: "Defects Shipped" },
+  { num: "3",    label: "OEM Programs" },
 ];
 
-function Typewriter() {
-  const [roleIdx, setRoleIdx] = React.useState(0);
-  const [text, setText] = React.useState("");
-  const [deleting, setDeleting] = React.useState(false);
-
-  React.useEffect(() => {
-    const full = ROLES[roleIdx];
-    let timeout;
-    if (!deleting) {
-      if (text.length < full.length) {
-        timeout = setTimeout(() => setText(full.slice(0, text.length + 1)), 52);
-      } else {
-        timeout = setTimeout(() => setDeleting(true), 2600);
-      }
-    } else {
-      if (text.length > 0) {
-        timeout = setTimeout(() => setText(text.slice(0, -1)), 28);
-      } else {
-        setDeleting(false);
-        setRoleIdx((i) => (i + 1) % ROLES.length);
-      }
-    }
-    return () => clearTimeout(timeout);
-  }, [text, deleting, roleIdx]);
-
-  return (
-    <span className="font-mono-tech typewriter-cursor text-sm sm:text-base dark:text-violet-300 text-violet-600">
-      {text || "\u00A0"}
-    </span>
-  );
-}
-
-function SocialLink({ href, label, icon: Icon }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={label}
-      title={label}
-      className="group flex h-10 w-10 items-center justify-center rounded-xl border dark:border-white/8 border-violet-200 dark:bg-white/4 bg-white/80 dark:text-slate-400 text-slate-500 transition-all duration-200 dark:hover:border-violet-500/50 hover:border-violet-400/60 dark:hover:bg-violet-500/12 hover:bg-violet-50 dark:hover:text-violet-400 hover:text-violet-600 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-violet-500/10"
-    >
-      <Icon width={17} height={17} />
-    </a>
-  );
-}
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
-});
+/* Snappy easing — no spring, no bounce */
+const ease = [0, 0, 0.2, 1];
 
 export default function Hero({ profile }) {
-  const socialIcons = {
-    LinkedIn: IconLinkedIn,
-    GitHub: IconGitHub,
-    Instagram: IconInstagram,
-    Email: IconEmail,
-  };
-  const firstName = profile.name.split(" ")[0];
-  const lastName = profile.name.split(" ").slice(1).join(" ");
+  const socials = profile.links.filter((l) =>
+    ["LinkedIn", "GitHub", "Instagram"].includes(l.label)
+  );
 
   return (
-    <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section
+      id="top"
+      className="border-b-4 border-black swiss-grid min-h-screen flex flex-col pt-14"
+    >
+      <div className="swiss-wrap flex-1 py-10 md:py-14 flex flex-col justify-between">
 
-      {/* Content — centered */}
-      <div className="relative z-10 flex w-full max-w-4xl flex-col items-center gap-7 text-center">
-
-        {/* Photo with spinning ring */}
+        {/* Status label */}
         <motion.div
-          className="relative"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="flex items-center gap-3 mb-8"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease }}
         >
-          {/* Spinning conic ring */}
-          <div
-            className="photo-ring absolute -inset-[3px] rounded-full"
-            aria-hidden="true"
-          />
-          {/* White gap ring */}
-          <div
-            className="absolute -inset-[3px] rounded-full dark:bg-[#070714] bg-slate-50"
-            style={{ margin: "2px" }}
-            aria-hidden="true"
-          />
-          <img
-            src={profile.headshotUrl}
-            alt={profile.name}
-            className="relative h-28 w-28 rounded-full object-cover object-top sm:h-36 sm:w-36"
-            style={{ zIndex: 1 }}
-          />
-          {/* Available dot */}
-          <div
-            className="absolute bottom-1.5 right-1.5 z-10 h-4 w-4 rounded-full border-2 dark:border-[#070714] border-slate-50 bg-emerald-400"
-            style={{ boxShadow: "0 0 8px rgba(16,185,129,0.8)" }}
-            title="Available for opportunities"
-          />
+          <span className="w-2 h-2 bg-[#ff3000] flex-shrink-0" aria-hidden="true" />
+          <span className="swiss-label text-[#ff3000]">01 — Available for Work</span>
         </motion.div>
 
-        {/* Available badge */}
-        <motion.div {...fadeUp(0.15)}>
-          <span className="inline-flex items-center gap-2 rounded-full border dark:border-violet-500/25 border-violet-300/60 dark:bg-violet-500/8 bg-violet-50 px-4 py-1.5 font-mono-tech text-xs dark:text-violet-300 text-violet-700">
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-violet-400"
-              style={{ animation: "pulse-glow 2s ease-in-out infinite", color: "#8B5CF6" }}
+        {/* Main layout */}
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+          {/* Left: text block */}
+          <div className="lg:col-span-8 flex flex-col">
+
+            {/* Name — massive display type */}
+            <motion.h1
+              className="font-black uppercase leading-none tracking-tighter text-black"
+              style={{ fontSize: "clamp(4.2rem, 14vw, 11rem)" }}
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease, delay: 0.05 }}
+            >
+              LEMMY
+              <br />
+              LIN
+            </motion.h1>
+
+            {/* Swiss Red rule — slides in */}
+            <motion.div
+              className="h-1.5 w-16 bg-[#ff3000] mt-5 mb-5 origin-left"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.35, ease, delay: 0.4 }}
+              aria-hidden="true"
             />
-            Open to new opportunities
-          </span>
-        </motion.div>
 
-        {/* Name */}
-        <motion.div {...fadeUp(0.25)}>
-          <h1 className="text-5xl font-black tracking-tight leading-none sm:text-6xl lg:text-8xl">
-            <span className="gradient-text-hero text-glow-violet">{firstName}</span>
-            {" "}
-            <span className="dark:text-white text-slate-900">{lastName}</span>
-          </h1>
-        </motion.div>
+            {/* Role line */}
+            <motion.p
+              className="swiss-label text-black mb-4"
+              style={{ fontSize: "0.72rem", letterSpacing: "0.2em" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.45 }}
+            >
+              {profile.title}
+            </motion.p>
 
-        {/* Typewriter role */}
-        <motion.div
-          className="flex h-7 items-center justify-center gap-2"
-          {...fadeUp(0.35)}
-        >
-          <span className="dark:text-slate-500 text-slate-400 font-mono-tech text-sm">&gt;</span>
-          <Typewriter />
-        </motion.div>
+            {/* Tagline */}
+            <motion.p
+              className="text-base md:text-lg text-gray-600 leading-relaxed max-w-lg mb-10"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease, delay: 0.5 }}
+            >
+              {profile.tagline}
+            </motion.p>
 
-        {/* Tagline */}
-        <motion.p
-          className="max-w-xl text-base leading-relaxed dark:text-slate-400 text-slate-600 sm:text-lg"
-          {...fadeUp(0.42)}
-        >
-          {profile.tagline}
-        </motion.p>
+            {/* CTAs */}
+            <motion.div
+              className="flex flex-wrap gap-3 mb-12"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease, delay: 0.55 }}
+            >
+              <a href="#contact" className="btn btn-primary">
+                Get in Touch
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
+                </svg>
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}Resume.pdf`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-secondary"
+              >
+                View Résumé&nbsp;↗
+              </a>
+            </motion.div>
 
-        {/* Location + Social links */}
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-3"
-          {...fadeUp(0.5)}
-        >
-          <span className="inline-flex items-center gap-1.5 rounded-full border dark:border-slate-700/60 border-slate-200 dark:bg-slate-800/40 bg-white/70 px-3 py-1 text-xs dark:text-slate-400 text-slate-500">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" />
-            </svg>
-            {profile.location}
-          </span>
-          {profile.links.filter((l) => l.label !== "Site").map((l) => (
-            <SocialLink
-              key={l.label}
-              href={l.href}
-              label={l.label}
-              icon={socialIcons[l.label] || IconEmail}
-            />
-          ))}
-        </motion.div>
+            {/* Stats bar */}
+            <motion.div
+              className="border-t-2 border-black"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.62 }}
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-4">
+                {STATS.map(({ num, label }, i) => (
+                  <div
+                    key={label}
+                    className={`py-6 ${i < STATS.length - 1 ? "sm:border-r-2 sm:border-black" : ""} ${i > 0 ? "sm:pl-6" : ""} ${i % 2 === 0 && i < STATS.length - 1 ? "border-r-2 border-black sm:border-r-0 pr-6 sm:pr-0" : "pl-6 sm:pl-0"}`}
+                  >
+                    <div className="font-black text-3xl md:text-4xl leading-none text-black">
+                      {num}
+                    </div>
+                    <div className="swiss-label text-gray-500 mt-1.5">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
 
-        {/* CTA buttons */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3"
-          {...fadeUp(0.58)}
-        >
-          <a href="#contact" className="btn-primary">
-            Get in Touch
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-          <a
-            href={`${import.meta.env.BASE_URL}Resume.pdf`}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-ghost"
+          {/* Right: photo + meta card */}
+          <motion.div
+            className="lg:col-span-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, ease, delay: 0.2 }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 15V3M12 15l-3-3M12 15l3-3M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            View Résumé
-          </a>
-        </motion.div>
-
-        {/* Stats bar */}
-        <motion.div
-          className="mt-2 grid grid-cols-2 gap-4 border-t dark:border-white/6 border-slate-200 pt-6 sm:grid-cols-4"
-          {...fadeUp(0.66)}
-        >
-          {STATS.map(({ value, label, color }) => (
-            <div key={label} className="flex flex-col items-center gap-0.5">
-              <span className={`font-mono-tech text-3xl font-bold ${color}`}>{value}</span>
-              <span className="text-xs dark:text-slate-500 text-slate-500 text-center">{label}</span>
+            {/* Photo — 4px black border, slight grayscale */}
+            <div className="border-4 border-black">
+              <img
+                src={profile.headshotUrl}
+                alt={profile.name}
+                className="w-full aspect-[3/4] object-cover object-top block"
+                style={{ filter: "grayscale(12%) contrast(1.02)" }}
+              />
             </div>
-          ))}
-        </motion.div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-      >
-        <span className="font-mono-tech text-[10px] dark:text-slate-600 text-slate-400 tracking-widest uppercase">scroll</span>
-        <div className="h-8 w-px bg-gradient-to-b dark:from-violet-500/40 from-violet-400/40 to-transparent" />
-      </motion.div>
+            {/* Meta info box — dot-pattern muted background */}
+            <div className="border-4 border-t-0 border-black p-5 bg-[#f2f2f2] swiss-dots">
+              <div className="space-y-4">
+                <div>
+                  <div className="swiss-label text-gray-500 mb-1">Location</div>
+                  <div className="text-sm font-semibold">{profile.location}</div>
+                </div>
+                <div>
+                  <div className="swiss-label text-gray-500 mb-1">Currently at</div>
+                  <div className="text-sm font-semibold">Stoneridge, Inc.</div>
+                </div>
+                <div className="pt-3 border-t-2 border-black flex flex-wrap gap-x-5 gap-y-2">
+                  {socials.map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="swiss-label text-black hover:text-[#ff3000] transition-colors duration-150"
+                    >
+                      {s.label}&nbsp;↗
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

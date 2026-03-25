@@ -1,5 +1,1 @@
-import React from "react";
-
-export default function Badge({ children }) {
-  return <span className="tech-badge">{children}</span>;
-}
+export default function Badge() { return null; }
