@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-// Map section ids to terminal-style index labels
 const SECTION_NUMBERS = {
   about: "01",
   experience: "02",
@@ -11,7 +10,7 @@ const SECTION_NUMBERS = {
   contact: "06",
 };
 
-export default function Section({ id, title, children, dark, divider = true }) {
+export default function Section({ id, title, children }) {
   const prefersReduced = useReducedMotion();
   const num = SECTION_NUMBERS[id];
 
@@ -25,16 +24,21 @@ export default function Section({ id, title, children, dark, divider = true }) {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Section header */}
-      <div className="mb-12 flex items-center gap-4">
-        {num && (
-          <span className="font-mono-tech text-xs text-violet-400/60 select-none">
-            // {num}
-          </span>
-        )}
-        <h2 className="text-2xl font-bold tracking-tight dark:text-white text-slate-900 sm:text-3xl">
-          {title.toUpperCase()}
-        </h2>
-        <div className="flex-1 h-px bg-gradient-to-r from-violet-400/30 via-violet-400/10 to-transparent" />
+      <div className="mb-12">
+        <div className="flex items-center gap-3 mb-3">
+          {num && (
+            <span className="font-mono-tech text-xs dark:text-violet-500/60 text-violet-600/60 select-none tracking-widest">
+              {num}
+            </span>
+          )}
+          <div className="flex-1 h-px dark:bg-white/5 bg-slate-200" />
+        </div>
+        <div className="flex items-end gap-4">
+          <h2 className="text-3xl font-extrabold tracking-tight dark:text-white text-slate-900 sm:text-4xl">
+            {title}
+          </h2>
+          <div className="mb-1.5 h-1.5 w-1.5 rounded-full bg-violet-500 flex-shrink-0" style={{ boxShadow: "0 0 8px rgba(139,92,246,0.8)" }} />
+        </div>
       </div>
 
       {children}

@@ -58,8 +58,8 @@ export default function App() {
   return (
     <div
       className={
-        "min-h-screen font-sans antialiased selection:bg-violet-500/20 " +
-        (isDark ? "bg-[#0b0b13] text-slate-100" : "bg-slate-50 text-slate-900")
+        "min-h-screen antialiased selection:bg-violet-500/20 " +
+        (isDark ? "bg-[#070714] text-slate-100" : "bg-slate-50 text-slate-900")
       }
     >
       <a
@@ -69,17 +69,20 @@ export default function App() {
         Skip to content
       </a>
 
-      {/* Background: animated dot grid + glowing orbs */}
+      {/* Background: dot grid + animated gradient orbs */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid" />
-        {/* Animated orbs */}
         <div
-          className="orb-cyan absolute -top-1/4 -left-1/4 h-[70vh] w-[70vh] rounded-full opacity-50"
-          style={{ animation: "orb-drift 18s ease-in-out infinite" }}
+          className="orb-violet absolute -top-1/3 -left-1/4 h-[80vh] w-[80vh] rounded-full opacity-60"
+          style={{ animation: "orb-drift 20s ease-in-out infinite" }}
         />
         <div
-          className="orb-indigo absolute -bottom-1/4 -right-1/4 h-[60vh] w-[60vh] rounded-full opacity-40"
-          style={{ animation: "orb-drift 22s ease-in-out infinite reverse" }}
+          className="orb-cyan absolute -bottom-1/3 -right-1/4 h-[65vh] w-[65vh] rounded-full opacity-50"
+          style={{ animation: "orb-drift 26s ease-in-out infinite reverse" }}
+        />
+        <div
+          className="orb-violet absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40vh] w-[40vh] rounded-full opacity-20"
+          style={{ animation: "orb-drift 15s ease-in-out infinite 5s" }}
         />
       </div>
 
