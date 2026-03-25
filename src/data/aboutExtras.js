@@ -9,16 +9,16 @@ const aboutExtras = {
     "Continuous learning through tinkering and side projects",
   ],
   hobbies: [
-    "Tinkering with Tesla (OBD reprogramming, Comma AI ADAS experiments)",
+    "Tinkering with automotive electronics (OBD reprogramming, ADAS experiments)",
     "Biking and skateboarding outdoors",
     "Road trips and hiking (Smoky Mountains, Pictured Rocks, Acadia, Disney)",
     "Cooking experiments (air fryer recipes, Korean short ribs)",
-    "Cats (Mia and Ash)",
+    "Spending time with cats",
   ],
   fun_facts: [
-    "Born in Shenzhen, China, moved to Michigan for high school",
+    "Born in Shenzhen, China; moved to the U.S. for high school",
     "Built a Mac mini M4 home server with VMware and DAS storage",
-    "Enjoy karaoke (pop songs, no Bieber 😅)",
+    "Enjoy karaoke and pop songs",
   ],
 };
 
