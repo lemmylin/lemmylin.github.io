@@ -1,5 +1,4 @@
 import React from "react";
-import { styles } from "./ui/classnames.js";
 import profile from "./data/profile.js";
 import experience from "./data/experience.js";
 import projects from "./data/projects.js";
@@ -14,6 +13,76 @@ import Skills from "./components/Skills.jsx";
 import Education from "./components/Education.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
+
+export default function App() {
+  const [dark, setDark] = React.useState(() => {
+    try {
+      const s = localStorage.getItem("theme");
+      if (s === "light") return false;
+      if (s === "dark") return true;
+      return window.matchMedia?.("(prefers-color-scheme: dark)").matches !== false;
+    } catch {
+      return true;
+    }
+  });
+
+  React.useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.style.colorScheme = dark ? "dark" : "light";
+    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch {}
+  }, [dark]);
+
+  const [showTop, setShowTop] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--c-bg)] focus:px-4 focus:py-2 focus:border focus:border-[var(--c-border-2)] focus:text-[var(--c-text)] focus:outline-none"
+      >
+        Skip to content
+      </a>
+
+      <div
+        className="min-h-screen"
+        style={{ background: "var(--c-bg)", color: "var(--c-text)" }}
+      >
+        <Header dark={dark} onToggle={() => setDark((d) => !d)} />
+
+        <main id="main">
+          <Hero profile={profile} />
+          <About />
+          <Experience experience={experience} />
+          <Projects projects={projects} />
+          <Skills skills={skills} />
+          <Education education={education} />
+          <Contact profile={profile} />
+        </main>
+
+        <Footer profile={profile} />
+      </div>
+
+      {/* Back to top */}
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+        className={`back-to-top transition-all duration-300 ${
+          showTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+    </>
+  );
+}
 
 export default function App() {
   // Theme: auto | light | dark
