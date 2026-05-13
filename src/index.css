@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 3.5rem;
+  color-scheme: light;
+}
+
+body {
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #000000;
+}
+
+::selection {
+  background: #ff3000;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #f2f2f2; }
+::-webkit-scrollbar-thumb { background: #000; }
+::-webkit-scrollbar-thumb:hover { background: #ff3000; }
+
+/* ─────────────────────────────────────────────
+   SWISS TEXTURE PATTERNS
+   Applied to muted gray surfaces for depth
+───────────────────────────────────────────── */
+
+/* 24px grid — hero backgrounds, feature areas */
+.swiss-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 16px dot matrix — section headers, sidebars */
+.swiss-dots {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* 45° diagonal lines — section label bars */
+.swiss-diagonal {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 9px,
+    rgba(0, 0, 0, 0.025) 9px,
+    rgba(0, 0, 0, 0.025) 10px
+  );
+}
+
+/* Noise overlay — body background texture */
+.swiss-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.012'/%3E%3C/svg%3E");
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY UTILITIES
+───────────────────────────────────────────── */
+
+/* Small uppercase label — section prefixes, meta labels */
+.swiss-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ─────────────────────────────────────────────
+   LAYOUT
+───────────────────────────────────────────── */
+
+.swiss-wrap {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .swiss-wrap { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .swiss-wrap { padding-left: 4rem; padding-right: 4rem; }
+}
+
+/* ─────────────────────────────────────────────
+   TAGS / CHIPS
+───────────────────────────────────────────── */
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid #000000;
+  line-height: 1.5;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: default;
+}
+
+.tag:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1.5rem;
+  height: 3rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  white-space: nowrap;
+  border: none;
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #ff3000;
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: #000000;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #ff3000;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+.btn-secondary:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
